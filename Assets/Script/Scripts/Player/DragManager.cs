@@ -8,14 +8,17 @@ public class DragManager : MonoBehaviour
     public GameObject[] turretPrefabs;
     public Slot[] allSlots;
 
-    [Header("Tinh chỉnh vị trí xuất hiện của Súng")]
-    public Vector3 spawnOffset = new Vector3(0, 0.15f, 0);
+    [Header("Tinh chỉnh vị trí (Offset)")]
+    [Tooltip("Dành cho các ô trong bảng ghép (laneID = -1)")]
+    public Vector3 mergeZoneOffset = new Vector3(0, 0.15f, 0);
+
+    [Tooltip("Dành cho các ô trên làn đường bắn (laneID > -1)")]
+    public Vector3 combatZoneOffset = new Vector3(0, 0.25f, 0);
 
     private Camera cam;
     private Turret selectedTurret;
     private Slot originalSlot;
 
-    // THÊM AWAKE ĐỂ KHỞI TẠO SINGLETON
     void Awake()
     {
         if (Instance == null) Instance = this;
@@ -29,7 +32,6 @@ public class DragManager : MonoBehaviour
 
     void Update()
     {
-
         if (Input.GetKeyDown(KeyCode.Space))
         {
             SpawnTestTurret();
@@ -77,6 +79,16 @@ public class DragManager : MonoBehaviour
         }
     }
 
+    // --- HÀM TÍNH TOÁN VỊ TRÍ TỰ ĐỘNG ---
+    private Vector3 GetTargetPosition(Slot slot)
+    {
+        // Nếu là ô chờ (-1) thì dùng Offset của bảng ghép, ngược lại dùng Offset của làn đường
+        if (slot.slotLaneID == -1)
+            return slot.transform.position + mergeZoneOffset;
+        else
+            return slot.transform.position + combatZoneOffset;
+    }
+
     void HandleDrop(Slot targetSlot)
     {
         if (targetSlot == originalSlot)
@@ -91,7 +103,8 @@ public class DragManager : MonoBehaviour
             targetSlot.currentTurret = selectedTurret;
             selectedTurret.currentSlot = targetSlot;
 
-            selectedTurret.transform.position = targetSlot.transform.position + spawnOffset;
+            // Dùng hàm tính vị trí mới thay vì cộng tay
+            selectedTurret.transform.position = GetTargetPosition(targetSlot);
             selectedTurret.laneID = targetSlot.slotLaneID;
         }
         else
@@ -108,7 +121,7 @@ public class DragManager : MonoBehaviour
 
                 if (nextLevel < turretPrefabs.Length)
                 {
-                    Vector3 spawnPos = targetSlot.transform.position + spawnOffset;
+                    Vector3 spawnPos = GetTargetPosition(targetSlot);
                     GameObject newTurretObj = Instantiate(turretPrefabs[nextLevel], spawnPos, Quaternion.identity);
                     Turret newTurret = newTurretObj.GetComponent<Turret>();
 
@@ -121,12 +134,12 @@ public class DragManager : MonoBehaviour
             {
                 originalSlot.currentTurret = targetTurret;
                 targetTurret.currentSlot = originalSlot;
-                targetTurret.transform.position = originalSlot.transform.position + spawnOffset;
+                targetTurret.transform.position = GetTargetPosition(originalSlot);
                 targetTurret.laneID = originalSlot.slotLaneID;
 
                 targetSlot.currentTurret = selectedTurret;
                 selectedTurret.currentSlot = targetSlot;
-                selectedTurret.transform.position = targetSlot.transform.position + spawnOffset;
+                selectedTurret.transform.position = GetTargetPosition(targetSlot);
                 selectedTurret.laneID = targetSlot.slotLaneID;
             }
         }
@@ -134,17 +147,16 @@ public class DragManager : MonoBehaviour
 
     void ReturnToOriginalSlot()
     {
-        selectedTurret.transform.position = originalSlot.transform.position + spawnOffset;
+        selectedTurret.transform.position = GetTargetPosition(originalSlot);
     }
 
-    // ĐÃ SỬA THÀNH HÀM PUBLIC BOOL ĐỂ NÚT MUA GỌI ĐƯỢC
     public bool SpawnBoughtTurret()
     {
         foreach (Slot slot in allSlots)
         {
             if (slot.slotLaneID == -1 && slot.IsEmpty())
             {
-                Vector3 spawnPos = slot.transform.position + spawnOffset;
+                Vector3 spawnPos = GetTargetPosition(slot);
                 GameObject newTurretObj = Instantiate(turretPrefabs[0], spawnPos, Quaternion.identity);
                 Turret newTurret = newTurretObj.GetComponent<Turret>();
 
@@ -152,33 +164,29 @@ public class DragManager : MonoBehaviour
                 slot.currentTurret = newTurret;
                 newTurret.laneID = slot.slotLaneID;
 
-                return true; // Trả về true để GoldManager biết là đẻ thành công và trừ tiền
+                return true;
             }
         }
-        return false; // Hết chỗ rồi, không trừ tiền
+        return false;
     }
 
     void SpawnTestTurret()
     {
         foreach (Slot slot in allSlots)
         {
-            // Kiểm tra xem ô có thuộc khu vực dưới (Merge Zone: laneID = -1) và đang trống không
             if (slot.slotLaneID == -1 && slot.IsEmpty())
             {
-                // Tính toán vị trí xuất hiện có cộng thêm Offset tinh chỉnh
-                Vector3 spawnPos = slot.transform.position + spawnOffset;
+                Vector3 spawnPos = GetTargetPosition(slot);
 
-                // Khởi tạo Prefab súng Level 1 (Vị trí số 0 trong mảng)
                 GameObject newTurretObj = Instantiate(turretPrefabs[0], spawnPos, Quaternion.identity);
                 Turret newTurret = newTurretObj.GetComponent<Turret>();
 
-                // Gán thông tin ô cho súng và ngược lại
                 newTurret.currentSlot = slot;
                 slot.currentTurret = newTurret;
                 newTurret.laneID = slot.slotLaneID;
 
                 Debug.Log($"[Test] Đã đẻ 1 súng Level 1 tại ô: {slot.gameObject.name}");
-                return; // Đẻ xong 1 con thì thoát hàm luôn
+                return;
             }
         }
         Debug.Log("[Test] Hết ô trống rồi, không đẻ được nữa!");
