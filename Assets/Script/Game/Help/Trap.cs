@@ -3,34 +3,39 @@
 public class Trap : MonoBehaviour
 {
     [Header("Thông số bẫy")]
-    public int damage = 50;       // Sát thương mỗi lần dẫm
-    public int durability = 3;    // Độ bền (Ví dụ: dẫm 3 lần là hỏng bẫy)
-    public GameObject explosionVFX; // (Tùy chọn) Kéo prefab hiệu ứng nổ vào đây
+    public int damage = 50;
+    public int durability = 3;
+    public GameObject explosionVFX;
 
-    // Hàm này tự chạy khi có quái (hoặc vật thể khác) đi vào vùng Is Trigger
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Kiểm tra xem thứ dẫm lên bẫy có phải là quái không
-        //Enemy enemy = collision.GetComponent<Enemy>();
-        //if (enemy != null)
-       // {
-            // 1. Trừ máu quái
-           // enemy.TakeDamage(damage);
+        // Tối ưu: Phải check xem thứ chạm vào CÓ ĐÚNG LÀ QUÁI KHÔNG trước khi xử lý
+        // Đảm bảo quái của bạn ngoài Inspector đã được gắn Tag là "Enemy" nhé
+        if (collision.CompareTag("Enemy"))
+        {
+            // BỎ DẤU // ĐỂ CODE CHẠY THẬT
+            Enemy enemy = collision.GetComponent<Enemy>();
 
-            // 2. Sinh hiệu ứng nổ/máu (nếu có)
-            if (explosionVFX != null)
+            if (enemy != null)
             {
-                Instantiate(explosionVFX, transform.position, Quaternion.identity);
-            }
+                // 1. Trừ máu quái
+                enemy.TakeDamage(damage);
 
-            // 3. Trừ độ bền của bẫy
-            durability--;
+                // 2. Sinh hiệu ứng nổ/máu (nếu có)
+                if (explosionVFX != null)
+                {
+                    Instantiate(explosionVFX, transform.position, Quaternion.identity);
+                }
 
-            // 4. Bẫy hỏng thì tự tiêu hủy
-            if (durability <= 0)
-            {
-                Destroy(gameObject);
+                // 3. Trừ độ bền của bẫy
+                durability--;
+
+                // 4. Bẫy hỏng thì tự tiêu hủy
+                if (durability <= 0)
+                {
+                    Destroy(gameObject);
+                }
             }
-        //}
+        }
     }
 }

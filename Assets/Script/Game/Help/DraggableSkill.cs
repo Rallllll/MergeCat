@@ -7,6 +7,13 @@ public class DraggableSkill : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     public GameObject skillPrefab;
     public int skillCount = 5;
 
+    [Header("Tinh chỉnh vị trí (Offset)")]
+    [Tooltip("Chỉnh số này để mũi tên chuột nằm ngay giữa thân lúc đang kéo")]
+    public Vector3 dragOffset = new Vector3(0, -0.5f, 0);
+
+    [Tooltip("Chỉnh độ cao thấp của lính khi thả xuống bám vào Lane")]
+    public Vector3 snapOffset = new Vector3(0, 0.25f, 0);
+
     [Header("Màu sắc hiển thị (UI)")]
     public Color validColor = new Color(0f, 1f, 0f, 0.5f);
     public Color invalidColor = new Color(1f, 0f, 0f, 0.5f);
@@ -27,13 +34,13 @@ public class DraggableSkill : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     {
         if (skillCount <= 0) return;
 
-        ghostItem = Instantiate(skillPrefab, GetMouseWorldPosition(), Quaternion.identity);
+        // CỘNG THÊM DRAG OFFSET NGAY LÚC ĐẺ RA
+        ghostItem = Instantiate(skillPrefab, GetMouseWorldPosition() + dragOffset, Quaternion.identity);
         ghostSr = ghostItem.GetComponent<SpriteRenderer>();
 
         Collider2D col = ghostItem.GetComponent<Collider2D>();
         if (col != null) col.enabled = false;
 
-        // TẮT SCRIPT MELEE để lính không tự đánh lúc đang bị túm cổ
         Melee meleeScript = ghostItem.GetComponent<Melee>();
         if (meleeScript != null) meleeScript.enabled = false;
 
@@ -55,7 +62,9 @@ public class DraggableSkill : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     {
         if (ghostItem != null)
         {
-            ghostItem.transform.position = GetMouseWorldPosition();
+            // CỘNG THÊM DRAG OFFSET LÚC KÉO ĐI
+            ghostItem.transform.position = GetMouseWorldPosition() + dragOffset;
+
             RaycastHit2D hit = Physics2D.Raycast(GetMouseWorldPosition(), Vector2.zero, 0f, LayerMask.GetMask("Road"));
 
             if (hit.collider != null) ghostSr.color = validColor;
@@ -80,15 +89,15 @@ public class DraggableSkill : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 
             if (hit.collider != null)
             {
+                // CỘNG THÊM SNAP OFFSET VÀO TRỤC Y KHI THẢ XUỐNG
                 Vector3 snappedPos = ghostItem.transform.position;
-                snappedPos.y = hit.transform.position.y;
+                snappedPos.y = hit.transform.position.y + snapOffset.y;
                 ghostItem.transform.position = snappedPos;
 
                 ghostSr.color = Color.white;
                 Collider2D col = ghostItem.GetComponent<Collider2D>();
                 if (col != null) col.enabled = true;
 
-                // BẬT LẠI SCRIPT MELEE khi đã đặt xuống đất an toàn
                 Melee meleeScript = ghostItem.GetComponent<Melee>();
                 if (meleeScript != null) meleeScript.enabled = true;
 

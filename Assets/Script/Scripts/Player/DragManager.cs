@@ -8,13 +8,6 @@ public class DragManager : MonoBehaviour
     public GameObject[] turretPrefabs;
     public Slot[] allSlots;
 
-    [Header("Tinh chỉnh vị trí (Offset)")]
-    [Tooltip("Dành cho các ô trong bảng ghép (laneID = -1)")]
-    public Vector3 mergeZoneOffset = new Vector3(0, 0.15f, 0);
-
-    [Tooltip("Dành cho các ô trên làn đường bắn (laneID > -1)")]
-    public Vector3 combatZoneOffset = new Vector3(0, 0.25f, 0);
-
     private Camera cam;
     private Turret selectedTurret;
     private Slot originalSlot;
@@ -79,14 +72,11 @@ public class DragManager : MonoBehaviour
         }
     }
 
-    // --- HÀM TÍNH TOÁN VỊ TRÍ TỰ ĐỘNG ---
+    // --- HÀM TÍNH TOÁN VỊ TRÍ ĐÃ ĐƯỢC TỐI GIẢN ---
     private Vector3 GetTargetPosition(Slot slot)
     {
-        // Nếu là ô chờ (-1) thì dùng Offset của bảng ghép, ngược lại dùng Offset của làn đường
-        if (slot.slotLaneID == -1)
-            return slot.transform.position + mergeZoneOffset;
-        else
-            return slot.transform.position + combatZoneOffset;
+        // Lấy đúng vị trí của ô đó cộng với bù trừ tọa độ riêng của chính nó
+        return slot.transform.position + slot.customOffset;
     }
 
     void HandleDrop(Slot targetSlot)
@@ -103,7 +93,6 @@ public class DragManager : MonoBehaviour
             targetSlot.currentTurret = selectedTurret;
             selectedTurret.currentSlot = targetSlot;
 
-            // Dùng hàm tính vị trí mới thay vì cộng tay
             selectedTurret.transform.position = GetTargetPosition(targetSlot);
             selectedTurret.laneID = targetSlot.slotLaneID;
         }
