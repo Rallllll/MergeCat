@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI; // Bắt buộc thêm dòng này để check trạng thái Button
 
 public class DraggableSkill : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+    [Header("Liên kết Kho Đồ (Đồng bộ Hub)")]
+    public GameExtraButton extraButtonRef; // Kéo script GameExtraButton vào đây
+
     [Header("Cài đặt Vật phẩm")]
     public GameObject skillPrefab;
-    public int skillCount = 5;
 
     [Header("Tinh chỉnh vị trí (Offset)")]
     [Tooltip("Chỉnh số này để mũi tên chuột nằm ngay giữa thân lúc đang kéo")]
@@ -32,17 +35,22 @@ public class DraggableSkill : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (skillCount <= 0) return;
+        // CHẶN KÉO NẾU HẾT HÀNG (Nút đã bị mờ đi)
+        Button btn = GetComponent<Button>();
+        if (btn != null && !btn.interactable) return;
 
-        // CỘNG THÊM DRAG OFFSET NGAY LÚC ĐẺ RA
         ghostItem = Instantiate(skillPrefab, GetMouseWorldPosition() + dragOffset, Quaternion.identity);
         ghostSr = ghostItem.GetComponent<SpriteRenderer>();
 
         Collider2D col = ghostItem.GetComponent<Collider2D>();
         if (col != null) col.enabled = false;
 
+        // Tắt logic hoạt động lúc đang kéo lơ lửng
         Melee meleeScript = ghostItem.GetComponent<Melee>();
         if (meleeScript != null) meleeScript.enabled = false;
+
+        Bomb bombScript = ghostItem.GetComponent<Bomb>();
+        if (bombScript != null) bombScript.enabled = false;
 
         lanes = GameObject.FindGameObjectsWithTag("Road");
         originalLaneColors = new Color[lanes.Length];
@@ -62,9 +70,7 @@ public class DraggableSkill : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     {
         if (ghostItem != null)
         {
-            // CỘNG THÊM DRAG OFFSET LÚC KÉO ĐI
             ghostItem.transform.position = GetMouseWorldPosition() + dragOffset;
-
             RaycastHit2D hit = Physics2D.Raycast(GetMouseWorldPosition(), Vector2.zero, 0f, LayerMask.GetMask("Road"));
 
             if (hit.collider != null) ghostSr.color = validColor;
@@ -76,6 +82,7 @@ public class DraggableSkill : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     {
         if (ghostItem != null)
         {
+            // Trả lại màu gốc cho Road
             for (int i = 0; i < lanes.Length; i++)
             {
                 if (lanes[i] != null)
@@ -89,22 +96,34 @@ public class DraggableSkill : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 
             if (hit.collider != null)
             {
-                // CỘNG THÊM SNAP OFFSET VÀO TRỤC Y KHI THẢ XUỐNG
-                Vector3 snappedPos = ghostItem.transform.position;
-                snappedPos.y = hit.transform.position.y + snapOffset.y;
-                ghostItem.transform.position = snappedPos;
+                // KIỂM TRA KHO VÀ TRỪ DATA TRƯỚC KHI CHO PHÉP THẢ
+                if (extraButtonRef != null && extraButtonRef.TryUseItem())
+                {
+                    // Kéo thả thành công -> Trừ tiền/số lượng thành công -> Sinh ra thật
+                    Vector3 snappedPos = ghostItem.transform.position;
+                    snappedPos.y = hit.transform.position.y + snapOffset.y;
+                    ghostItem.transform.position = snappedPos;
 
-                ghostSr.color = Color.white;
-                Collider2D col = ghostItem.GetComponent<Collider2D>();
-                if (col != null) col.enabled = true;
+                    ghostSr.color = Color.white;
+                    Collider2D col = ghostItem.GetComponent<Collider2D>();
+                    if (col != null) col.enabled = true;
 
-                Melee meleeScript = ghostItem.GetComponent<Melee>();
-                if (meleeScript != null) meleeScript.enabled = true;
+                    // Bật lại logic hoạt động cho con lính hoặc quả bom
+                    Melee meleeScript = ghostItem.GetComponent<Melee>();
+                    if (meleeScript != null) meleeScript.enabled = true;
 
-                skillCount--;
+                    Bomb bombScript = ghostItem.GetComponent<Bomb>();
+                    if (bombScript != null) bombScript.enabled = true;
+                }
+                else
+                {
+                    // Lỗi gì đó (chưa kéo ExtraButtonRef vào) hoặc lách luật -> Xóa bóng
+                    Destroy(ghostItem);
+                }
             }
             else
             {
+                // Thả sai chỗ (không phải Road) -> Xóa bóng (chưa gọi TryUseItem nên không bị mất đồ)
                 Destroy(ghostItem);
             }
 

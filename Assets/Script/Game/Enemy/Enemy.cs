@@ -23,6 +23,8 @@ public class Enemy : MonoBehaviour
     private Color originalColor;
     private LayerMask playerMask;
 
+    public int goldDrop = 15;
+
     // --- BIẾN ĐIỀU HƯỚNG ---
     private Vector2 currentDirection = Vector2.left; // Mặc định quái sinh ra là đi sang trái
 
@@ -55,11 +57,18 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+        // 1. CHỐNG NHẤP NHÁY VÀ ĐẢM BẢO QUÁI NỔI LÊN TRÊN HÌNH NỀN
+        if (sr != null)
+        {
+            sr.sortingOrder = 30000 + Mathf.RoundToInt(transform.position.y * -100f) + Mathf.RoundToInt(transform.position.x * -10f);
+        }
+
         if (isDead) return;
 
+        // 2. DI CHUYỂN HOẶC TẤN CÔNG
         if (!isAttacking)
         {
-            // QUAN TRỌNG: Dùng Space.World để không bị lỗi đi lùi (moonwalk) khi bị lật Scale
+            // Đi lùi (moonwalk) fix bằng Space.World
             transform.Translate(currentDirection * speed * Time.deltaTime, Space.World);
             CheckForTarget();
         }
@@ -68,13 +77,32 @@ public class Enemy : MonoBehaviour
             attackTimer -= Time.deltaTime;
             if (attackTimer <= 0f)
             {
+                // 3. KIỂM TRA MỤC TIÊU CÒN SỐNG HAY KHÔNG (Fix lỗi chém không khí)
+                bool targetIsDead = false;
+
+                // Nếu mục tiêu đã bị xóa hẳn khỏi màn hình
                 if (currentTarget == null || !currentTarget.activeInHierarchy)
                 {
-                    ResumeWalking();
+                    targetIsDead = true;
                 }
                 else
                 {
-                    anim.SetTrigger("Attack");
+                    // Nếu mục tiêu vẫn còn hình ảnh, NHƯNG lớp va chạm đã bị tắt (Tức là hết máu/vỡ thành)
+                    Collider2D targetCol = currentTarget.GetComponent<Collider2D>();
+                    if (targetCol == null || !targetCol.enabled)
+                    {
+                        targetIsDead = true;
+                    }
+                }
+
+                // QUYẾT ĐỊNH HÀNH ĐỘNG
+                if (targetIsDead)
+                {
+                    ResumeWalking(); // Mục tiêu đã chết/vỡ -> Đi tiếp!
+                }
+                else
+                {
+                    anim.SetTrigger("Attack"); // Mục tiêu còn sống -> Chém tiếp!
                     attackTimer = attackRate;
                 }
             }
@@ -119,6 +147,9 @@ public class Enemy : MonoBehaviour
         {
             Melee defender = currentTarget.GetComponent<Melee>();
             if (defender != null) defender.TakeDamage(damage);
+
+            BaseHealth baseTarget = currentTarget.GetComponent<BaseHealth>();
+            if (baseTarget != null) baseTarget.TakeDamage(damage);
         }
     }
 
@@ -156,9 +187,16 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
+        if (isDead) return;
+
         isDead = true;
         anim.SetTrigger("Dead");
         GetComponent<Collider2D>().enabled = false;
+
+        if (CurrencyManager.Instance != null)
+        {
+            CurrencyManager.Instance.AddGold(goldDrop);
+        }
 
         StartCoroutine(DeactivateAfterDelay(1.5f));
     }
