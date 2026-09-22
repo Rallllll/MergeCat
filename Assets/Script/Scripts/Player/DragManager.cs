@@ -52,17 +52,49 @@ public class DragManager : MonoBehaviour
         {
             Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
             selectedTurret.transform.position = mousePos;
+
+            // KIỂM TRA ĐÈ LÊN THÙNG RÁC ĐỂ ĐỔI MÀU
+            RaycastHit2D hitTrash = Physics2D.Raycast(mousePos, Vector2.zero, Mathf.Infinity, LayerMask.GetMask("Trash"));
+            SpriteRenderer sr = selectedTurret.GetComponent<SpriteRenderer>();
+
+            if (sr != null)
+            {
+                if (hitTrash.collider != null)
+                {
+                    sr.color = new Color(1f, 0f, 0f, 0.5f); // Đổi thành màu Đỏ Mờ
+                }
+                else
+                {
+                    sr.color = Color.white; // Trả về màu gốc
+                }
+            }
         }
 
-        // GIAI ĐOẠN 3: THẢ CHUỘT -> XỬ LÝ GỘP / ĐỔI CHỖ
+        // GIAI ĐOẠN 3: THẢ CHUỘT -> XỬ LÝ GỘP / ĐỔI CHỖ / XOÁ
         if (Input.GetMouseButtonUp(0) && selectedTurret != null)
         {
             Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero, Mathf.Infinity, LayerMask.GetMask("Slot"));
 
-            if (hit.collider != null)
+            // 1. KIỂM TRA NẾU THẢ VÀO THÙNG RÁC THÌ XOÁ LUÔN
+            RaycastHit2D hitTrash = Physics2D.Raycast(mousePos, Vector2.zero, Mathf.Infinity, LayerMask.GetMask("Trash"));
+            if (hitTrash.collider != null)
             {
-                Slot targetSlot = hit.collider.GetComponent<Slot>();
+                originalSlot.currentTurret = null;  // Giải phóng ô slot cũ
+                Destroy(selectedTurret.gameObject); // Xoá vĩnh viễn con mèo
+                selectedTurret = null;              // Reset trạng thái tay cầm
+                return;                             // Cắt ngang, không chạy code thả xuống ô bên dưới nữa
+            }
+
+            // Đảm bảo trả lại màu trắng bình thường nếu thả trượt ra ngoài
+            SpriteRenderer sr = selectedTurret.GetComponent<SpriteRenderer>();
+            if (sr != null) sr.color = Color.white;
+
+            // 2. LOGIC THẢ XUỐNG SLOT BÌNH THƯỜNG CỦA M
+            RaycastHit2D hitSlot = Physics2D.Raycast(mousePos, Vector2.zero, Mathf.Infinity, LayerMask.GetMask("Slot"));
+
+            if (hitSlot.collider != null)
+            {
+                Slot targetSlot = hitSlot.collider.GetComponent<Slot>();
                 if (targetSlot != null) HandleDrop(targetSlot);
                 else ReturnToOriginalSlot();
             }
@@ -75,7 +107,6 @@ public class DragManager : MonoBehaviour
     // --- HÀM TÍNH TOÁN VỊ TRÍ ĐÃ ĐƯỢC TỐI GIẢN ---
     private Vector3 GetTargetPosition(Slot slot)
     {
-        // Lấy đúng vị trí của ô đó cộng với bù trừ tọa độ riêng của chính nó
         return slot.transform.position + slot.customOffset;
     }
 
