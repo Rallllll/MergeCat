@@ -6,21 +6,21 @@ using System.Collections.Generic;
 [System.Serializable]
 public class ExtraItem
 {
-    public string itemID;      // Quan trọng: Phải khớp với tên gọi bên Scene Game (VD: "MeleeCat", "Bomb")
-    public int price = 25;     // Giá mua (VD: 25 Gems)
-    public int maxQuantity = 5;// Số lượng tối đa (VD: 5)
+    public string itemID;
+    public int price = 25;
+    public int maxQuantity = 5;
 
     [Header("UI Bên Phải (Cửa Hàng)")]
-    public Button buyButton;            // Nút bấm mua (có hình kim cương)
-    public TextMeshProUGUI rightAmount; // Text "3/5" bên phải
-    public GameObject selectedBorder;   // Cái viền trắng bật lên khi được gán vào slot trái
+    public Button buyButton;
+    public TextMeshProUGUI rightAmount;
+    public GameObject selectedBorder;
 
     [Header("UI Bên Trái (Slot Trang Bị)")]
-    public GameObject leftSlotRoot;     // Toàn bộ Object của slot bên trái (để ẩn nếu chưa có)
-    public TextMeshProUGUI leftAmount;  // Text "3/5" bên trái
+    public GameObject leftSlotRoot;
+    public TextMeshProUGUI leftAmount;
 
     [HideInInspector] public int currentQuantity;
-    [HideInInspector] public bool isEquipped; // Biến kiểm tra xem có đang nằm trong 4 slot trái không
+    [HideInInspector] public bool isEquipped;
 }
 
 public class ExtraShopManager : MonoBehaviour
@@ -37,36 +37,71 @@ public class ExtraShopManager : MonoBehaviour
     {
         foreach (var item in extraItems)
         {
-            // Load số lượng người chơi đang có, key lưu trữ là "Extra_" + itemID
+            // Load số lượng
             item.currentQuantity = PlayerPrefs.GetInt("Extra_" + item.itemID, 0);
 
-            // Tạm thời logic: Nếu có gắn UI bên trái (leftSlotRoot != null) thì mặc định là đang được Equip
-            item.isEquipped = (item.leftSlotRoot != null);
+            // Load trạng thái xem có đang được chọn mang vào game không (1 là có, 0 là không)
+            item.isEquipped = PlayerPrefs.GetInt("Equipped_" + item.itemID, 0) == 1;
         }
     }
 
-    // Hàm gắn vào sự kiện OnClick của các nút Buy bên phải
+    // --- HÀM MỚI: GẮN VÀO ONCLICK CỦA 4 CÁI NÚT BÊN TRÁI ---
+    public void ToggleEquipItem(int index)
+    {
+        ExtraItem item = extraItems[index];
+
+        // Nếu trong kho không có cái nào (chưa mua) thì cấm mang vào game
+        if (item.currentQuantity <= 0)
+        {
+            Debug.Log("Bạn chưa mua " + item.itemID + ", không thể mang vào game!");
+            return;
+        }
+
+        if (item.isEquipped)
+        {
+            // Đang chọn -> Bấm phát nữa để BỎ CHỌN
+            item.isEquipped = false;
+            PlayerPrefs.SetInt("Equipped_" + item.itemID, 0);
+        }
+        else
+        {
+            // Chưa chọn -> Kiểm tra xem đã mang đủ 3 món chưa
+            int equipCount = 0;
+            foreach (var i in extraItems)
+            {
+                if (i.isEquipped) equipCount++;
+            }
+
+            if (equipCount >= 3)
+            {
+                Debug.Log("Chỉ được mang tối đa 3 món phụ trợ vào trận!");
+                return; // Chặn lại, không cho chọn thêm
+            }
+
+            // Hợp lệ -> ĐÁNH DẤU CHỌN
+            item.isEquipped = true;
+            PlayerPrefs.SetInt("Equipped_" + item.itemID, 1);
+        }
+
+        PlayerPrefs.Save();
+        UpdateAllUI();
+    }
+
     public void BuyItem(int index)
     {
         ExtraItem item = extraItems[index];
 
-        // 1. Kiểm tra giới hạn số lượng
         if (item.currentQuantity >= item.maxQuantity) return;
 
-        // 2. Kiểm tra tiền và thanh toán
         if (HubCurrencyManager.Instance.SpendGems(item.price))
         {
             item.currentQuantity++;
-
-            // 3. Lưu dữ liệu để Scene Game có thể gọi ra dùng
             PlayerPrefs.SetInt("Extra_" + item.itemID, item.currentQuantity);
             PlayerPrefs.Save();
-
             UpdateAllUI();
         }
     }
 
-    // Cập nhật toàn bộ giao diện, chặn thao tác nếu hết tiền/full đồ
     public void UpdateAllUI()
     {
         int currentGems = HubCurrencyManager.Instance.GetGems();
@@ -75,42 +110,19 @@ public class ExtraShopManager : MonoBehaviour
         {
             string amountString = item.currentQuantity + "/" + item.maxQuantity;
 
-            // Cập nhật Text
             if (item.rightAmount != null) item.rightAmount.text = amountString;
             if (item.leftAmount != null) item.leftAmount.text = amountString;
 
-            // Xử lý nút mua (Interactable)
             if (item.buyButton != null)
             {
-                if (item.currentQuantity >= item.maxQuantity || currentGems < item.price)
-                {
-                    item.buyButton.interactable = false; // Mờ đi không cho bấm
-                }
-                else
-                {
-                    item.buyButton.interactable = true;
-                }
+                item.buyButton.interactable = !(item.currentQuantity >= item.maxQuantity || currentGems < item.price);
             }
 
-            // Xử lý Border bên phải và trạng thái hiển thị bên trái
-            if (item.isEquipped)
+            // Hiệu ứng viền trắng sẽ BẬT khi món đó ĐƯỢC CHỌN MANG VÀO GAME
+            if (item.selectedBorder != null)
             {
-                if (item.selectedBorder != null) item.selectedBorder.SetActive(true);
-                if (item.leftSlotRoot != null) item.leftSlotRoot.SetActive(true);
-            }
-            else
-            {
-                if (item.selectedBorder != null) item.selectedBorder.SetActive(false);
-                // Nếu muốn slot trái hiện ổ khóa thay vì ẩn đi, bạn có thể custom đoạn này
-                if (item.leftSlotRoot != null) item.leftSlotRoot.SetActive(false);
+                item.selectedBorder.SetActive(item.isEquipped);
             }
         }
-    }
-
-    // Gọi hàm này mỗi khi HubCurrencyManager trừ tiền thành công để nó check lại nút Buy
-    void Update()
-    {
-        // (Tùy chọn) Có thể tối ưu hơn bằng C# Events, nhưng để đơn giản 
-        // bạn chỉ cần gọi UpdateAllUI() từ HubCurrencyManager sau khi update tiền là được.
     }
 }

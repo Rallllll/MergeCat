@@ -5,12 +5,12 @@ using UnityEngine.UI;
 public class GameExtraButton : MonoBehaviour
 {
     [Header("Cài đặt Nút")]
-    public string itemID; // QUAN TRỌNG: Phải gõ chữ giống HỆT bên Main Hub (VD: "MeleeCat", "Bomb")
+    public string itemID;
     public int maxQuantity = 5;
 
     [Header("Giao diện UI")]
-    public TextMeshProUGUI amountText; // Kéo Text hiển thị số lượng của nút này vào đây
-    public Button myButton; // Kéo component Button (hoặc component Drag của m) vào để khóa lại nếu hết
+    public TextMeshProUGUI amountText;
+    public Button myButton;
 
     private int currentQuantity;
 
@@ -21,27 +21,33 @@ public class GameExtraButton : MonoBehaviour
 
     public void LoadData()
     {
-        // Lấy số lượng vừa mua từ Main Hub sang
+        // 1. KIỂM TRA QUYỀN VÀO GAME
+        int isEquipped = PlayerPrefs.GetInt("Equipped_" + itemID, 0);
+
+        if (isEquipped == 0)
+        {
+            // NẾU KHÔNG ĐƯỢC CHỌN BÊN HUB -> ẨN LUÔN NÚT NÀY CHO GỌN UI
+            gameObject.SetActive(false);
+            return;
+        }
+
+        // 2. NẾU ĐƯỢC CHỌN -> HIỂN THỊ VÀ LẤY SỐ LƯỢNG
+        gameObject.SetActive(true);
         currentQuantity = PlayerPrefs.GetInt("Extra_" + itemID, 0);
         UpdateUI();
     }
 
-    // HÀM NÀY SẼ ĐƯỢC GỌI KHI M THẢ QUẢ BOM HOẶC LÍNH XUỐNG MAP THÀNH CÔNG
     public bool TryUseItem()
     {
         if (currentQuantity > 0)
         {
-            currentQuantity--; // Dùng 1 cái thì trừ 1
-
-            // Lưu lại luôn để nếu quay về Main Hub thì số lượng được đồng bộ giảm xuống
+            currentQuantity--;
             PlayerPrefs.SetInt("Extra_" + itemID, currentQuantity);
             PlayerPrefs.Save();
-
             UpdateUI();
-            return true; // Báo về là: CÒN HÀNG, CHO PHÉP THẢ!
+            return true;
         }
-
-        return false; // Hết sạch rồi, cấm thả!
+        return false;
     }
 
     void UpdateUI()
@@ -51,7 +57,6 @@ public class GameExtraButton : MonoBehaviour
             amountText.text = currentQuantity + "/" + maxQuantity;
         }
 
-        // Tắt khả năng bấm/kéo nếu hết hàng
         if (myButton != null)
         {
             myButton.interactable = (currentQuantity > 0);
