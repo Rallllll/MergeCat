@@ -272,7 +272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca3e663adbc69fa499e462dd7f2e31ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bomb
-  damage: 500
+  damage: 50
   explosionRadius: 1.5
 --- !u!1 &7287637363321454028
 GameObject:

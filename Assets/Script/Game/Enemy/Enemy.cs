@@ -172,6 +172,14 @@ public class Enemy : MonoBehaviour
         currentHp -= damageAmount;
         if (sr != null) StartCoroutine(FlashRed());
 
+        // --- GỌI SỐ SÁT THƯƠNG TỪ TRONG KHO (POOL) CỦA M VÀO ĐÂY ---
+        if (DamageTextPool.Instance != null)
+        {
+            // Thêm offset tí xíu để nếu bị bắn liên tục, các số bung ra mượt mà không bị đè cứng lên nhau
+            Vector3 offset = new Vector3(Random.Range(-0.2f, 0.2f), Random.Range(0.3f, 0.8f), 0);
+            DamageTextPool.Instance.SpawnDamageText(transform.position + offset, damageAmount);
+        }
+
         if (currentHp <= 0)
         {
             Die();
