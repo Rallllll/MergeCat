@@ -196,8 +196,10 @@ public class Enemy : MonoBehaviour
     void Die()
     {
         if (isDead) return;
-
         isDead = true;
+
+        WaveManager.enemiesAlive--;
+
         anim.SetTrigger("Dead");
         GetComponent<Collider2D>().enabled = false;
 
@@ -212,7 +214,10 @@ public class Enemy : MonoBehaviour
     private IEnumerator DeactivateAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        gameObject.SetActive(false);
+        if (MultiEnemyPool.Instance != null)
+            MultiEnemyPool.Instance.ReturnToPool(gameObject);
+        else
+            gameObject.SetActive(false);
     }
 
     private void OnDrawGizmosSelected()

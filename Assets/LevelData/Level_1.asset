@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 965c646f973685a4383f75d801a3e8fb, type: 3}
+  m_Name: Level_1
+  m_EditorClassIdentifier: Assembly-CSharp::LevelConfig
+  levelID: 1
+  waves:
+  - enemyCount: 3
+    spawnDelay: 2
+    enemyExtraHP: 5
+    allowedEnemies:
+    - {fileID: 4296037815078202567, guid: a7fa691dc3eaa204589c07456c3b05f5, type: 3}
+    - {fileID: 7018907617650242247, guid: 5d9df3af19e575843acc8a0d32405f4e, type: 3}
+    - {fileID: 6319394674845083008, guid: 09e694a1fc7e5f24fa6a68155e3740ce, type: 3}
+  - enemyCount: 3
+    spawnDelay: 2
+    enemyExtraHP: 5
+    allowedEnemies:
+    - {fileID: 4296037815078202567, guid: a7fa691dc3eaa204589c07456c3b05f5, type: 3}
+    - {fileID: 7018907617650242247, guid: 5d9df3af19e575843acc8a0d32405f4e, type: 3}
+    - {fileID: 6319394674845083008, guid: 09e694a1fc7e5f24fa6a68155e3740ce, type: 3}
+  - enemyCount: 3
+    spawnDelay: 2
+    enemyExtraHP: 5
+    allowedEnemies:
+    - {fileID: 4296037815078202567, guid: a7fa691dc3eaa204589c07456c3b05f5, type: 3}
+    - {fileID: 7018907617650242247, guid: 5d9df3af19e575843acc8a0d32405f4e, type: 3}
+    - {fileID: 6319394674845083008, guid: 09e694a1fc7e5f24fa6a68155e3740ce, type: 3}
+  - enemyCount: 3
+    spawnDelay: 2
+    enemyExtraHP: 5
+    allowedEnemies:
+    - {fileID: 4296037815078202567, guid: a7fa691dc3eaa204589c07456c3b05f5, type: 3}
+    - {fileID: 7018907617650242247, guid: 5d9df3af19e575843acc8a0d32405f4e, type: 3}
+    - {fileID: 6319394674845083008, guid: 09e694a1fc7e5f24fa6a68155e3740ce, type: 3}

@@ -176,7 +176,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: LEVEL  1
+  m_text: 'LEVEL  9
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b36cef65df1ccaa42bd968cd9bfa4a0f, type: 2}
   m_sharedMaterial: {fileID: 4866474410988894020, guid: b36cef65df1ccaa42bd968cd9bfa4a0f, type: 2}
@@ -550,7 +552,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -178.44067, y: 33.780533}
-  m_SizeDelta: {x: 175.2781, y: 173.6}
+  m_SizeDelta: {x: 264, y: 264}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &20882463
 MonoBehaviour:
@@ -572,7 +574,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 5909766479160553677, guid: bcc1742cd59387545874caf2f5cadfe4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8f4db48a0d19aec4398803f154f39167, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1940,7 +1942,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: LEVEL  1
+  m_text: LEVEL  7
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b36cef65df1ccaa42bd968cd9bfa4a0f, type: 2}
   m_sharedMaterial: {fileID: 4866474410988894020, guid: b36cef65df1ccaa42bd968cd9bfa4a0f, type: 2}
@@ -2652,6 +2654,7 @@ GameObject:
   - component: {fileID: 136012459}
   - component: {fileID: 136012461}
   - component: {fileID: 136012460}
+  - component: {fileID: 136012462}
   m_Layer: 5
   m_Name: SlotUpgrade (13)
   m_TagString: Untagged
@@ -2677,10 +2680,10 @@ RectTransform:
   - {fileID: 1892721723}
   m_Father: {fileID: 1153161465}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 665.00494, y: -853.85}
-  m_SizeDelta: {x: 556.47, y: 224.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &136012460
 MonoBehaviour:
@@ -2720,6 +2723,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 136012458}
   m_CullTransparentMesh: 1
+--- !u!114 &136012462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 136012458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e05e8d6faf05afc4a933f39732441d69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CatUpgradeSlot
+  catID: Cat_01
+  upgradeButton: {fileID: 0}
+  progressBarImage: {fileID: 0}
+  progressSprites: []
 --- !u!1 &136769513
 GameObject:
   m_ObjectHideFlags: 0
@@ -2810,6 +2829,7 @@ GameObject:
   - component: {fileID: 148718442}
   - component: {fileID: 148718444}
   - component: {fileID: 148718443}
+  - component: {fileID: 148718445}
   m_Layer: 5
   m_Name: SlotUpgrade (4)
   m_TagString: Untagged
@@ -2835,10 +2855,10 @@ RectTransform:
   - {fileID: 789936462}
   m_Father: {fileID: 1153161465}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 665.00494, y: -303.65}
-  m_SizeDelta: {x: 556.47, y: 224.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &148718443
 MonoBehaviour:
@@ -2878,6 +2898,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 148718441}
   m_CullTransparentMesh: 1
+--- !u!114 &148718445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 148718441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e05e8d6faf05afc4a933f39732441d69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CatUpgradeSlot
+  catID: Cat_01
+  upgradeButton: {fileID: 0}
+  progressBarImage: {fileID: 0}
+  progressSprites: []
 --- !u!1 &154545140
 GameObject:
   m_ObjectHideFlags: 0
@@ -3655,8 +3691,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -178.44067, y: 33.780533}
-  m_SizeDelta: {x: 175.2781, y: 173.6}
+  m_AnchoredPosition: {x: -163, y: 42}
+  m_SizeDelta: {x: 282.7305, y: 253.9782}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &176595524
 MonoBehaviour:
@@ -3678,7 +3714,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 5909766479160553677, guid: bcc1742cd59387545874caf2f5cadfe4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c17b00cce88ff98409c16a67d41ad16e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3841,6 +3877,7 @@ GameObject:
   - component: {fileID: 202708380}
   - component: {fileID: 202708382}
   - component: {fileID: 202708381}
+  - component: {fileID: 202708383}
   m_Layer: 5
   m_Name: SlotUpgrade
   m_TagString: Untagged
@@ -3866,10 +3903,10 @@ RectTransform:
   - {fileID: 386084707}
   m_Father: {fileID: 1153161465}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 206.23499, y: -120.25}
-  m_SizeDelta: {x: 556.47, y: 224.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &202708381
 MonoBehaviour:
@@ -3909,6 +3946,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 202708379}
   m_CullTransparentMesh: 1
+--- !u!114 &202708383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 202708379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e05e8d6faf05afc4a933f39732441d69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CatUpgradeSlot
+  catID: Cat_01
+  upgradeButton: {fileID: 40063628}
+  progressBarImage: {fileID: 1878323789}
+  progressSprites:
+  - {fileID: 1794334700076439206, guid: f377158f5f6eb6547975006e017f6e41, type: 3}
+  - {fileID: -4568411145583958972, guid: 9263b14cab7a9c34cbeb85a8e46785d8, type: 3}
+  - {fileID: 674030166550027488, guid: 55ae902026af038478738ea1019b83a1, type: 3}
+  - {fileID: -8217670642582006296, guid: 26bce58dc730c7847b57b7b165213d35, type: 3}
+  - {fileID: -3106494477330011984, guid: d3dd35853c22b664ead46c7486b57e5c, type: 3}
+  - {fileID: 4414191992986437944, guid: 82ebac6a22d12a2498e76a04507152a9, type: 3}
 --- !u!1 &203483905
 GameObject:
   m_ObjectHideFlags: 0
@@ -4476,8 +4535,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -178.44067, y: 33.780533}
-  m_SizeDelta: {x: 175.2781, y: 173.6}
+  m_AnchoredPosition: {x: -147.33888, y: 52.771}
+  m_SizeDelta: {x: 340.3624, y: 257.8457}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &226633772
 MonoBehaviour:
@@ -4499,7 +4558,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 5909766479160553677, guid: bcc1742cd59387545874caf2f5cadfe4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 705fbe71aab330b438e86f98cd96f2b9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5259,7 +5318,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: LEVEL  1
+  m_text: LEVEL  15
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b36cef65df1ccaa42bd968cd9bfa4a0f, type: 2}
   m_sharedMaterial: {fileID: 4866474410988894020, guid: b36cef65df1ccaa42bd968cd9bfa4a0f, type: 2}
@@ -5851,7 +5910,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: LEVEL  1
+  m_text: LEVEL  12
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b36cef65df1ccaa42bd968cd9bfa4a0f, type: 2}
   m_sharedMaterial: {fileID: 4866474410988894020, guid: b36cef65df1ccaa42bd968cd9bfa4a0f, type: 2}
@@ -6413,7 +6472,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: LEVEL  1
+  m_text: LEVEL  10
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b36cef65df1ccaa42bd968cd9bfa4a0f, type: 2}
   m_sharedMaterial: {fileID: 4866474410988894020, guid: b36cef65df1ccaa42bd968cd9bfa4a0f, type: 2}
@@ -6635,7 +6694,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: LEVEL  1
+  m_text: LEVEL  2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b36cef65df1ccaa42bd968cd9bfa4a0f, type: 2}
   m_sharedMaterial: {fileID: 4866474410988894020, guid: b36cef65df1ccaa42bd968cd9bfa4a0f, type: 2}
@@ -7184,7 +7243,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: LEVEL  1
+  m_text: LEVEL  13
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b36cef65df1ccaa42bd968cd9bfa4a0f, type: 2}
   m_sharedMaterial: {fileID: 4866474410988894020, guid: b36cef65df1ccaa42bd968cd9bfa4a0f, type: 2}
@@ -8293,7 +8352,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -178.44067, y: 33.780533}
-  m_SizeDelta: {x: 175.2781, y: 173.6}
+  m_SizeDelta: {x: 264, y: 264}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &557946816
 MonoBehaviour:
@@ -8315,7 +8374,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 5909766479160553677, guid: bcc1742cd59387545874caf2f5cadfe4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f5262fa72e6f5124e95f4f7e6b5041e5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8390,7 +8449,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: LEVEL  1
+  m_text: LEVEL  6
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b36cef65df1ccaa42bd968cd9bfa4a0f, type: 2}
   m_sharedMaterial: {fileID: 4866474410988894020, guid: b36cef65df1ccaa42bd968cd9bfa4a0f, type: 2}
@@ -8505,7 +8564,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -178.44067, y: 33.780533}
-  m_SizeDelta: {x: 175.2781, y: 173.6}
+  m_SizeDelta: {x: 264, y: 264}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &561775487
 MonoBehaviour:
@@ -8527,7 +8586,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 5909766479160553677, guid: bcc1742cd59387545874caf2f5cadfe4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2a005374c27e89c4cb0a69d971e99cd9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8722,7 +8781,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: LEVEL  1
+  m_text: LEVEL  11
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b36cef65df1ccaa42bd968cd9bfa4a0f, type: 2}
   m_sharedMaterial: {fileID: 4866474410988894020, guid: b36cef65df1ccaa42bd968cd9bfa4a0f, type: 2}
@@ -9370,8 +9429,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -178.44067, y: 33.780533}
-  m_SizeDelta: {x: 175.2781, y: 173.6}
+  m_AnchoredPosition: {x: -183, y: 52.771}
+  m_SizeDelta: {x: 264, y: 264}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &608934043
 MonoBehaviour:
@@ -9393,7 +9452,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 5909766479160553677, guid: bcc1742cd59387545874caf2f5cadfe4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bc787eb7d877a4d4c9dfd7d3a9ac685f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9922,6 +9981,7 @@ GameObject:
   - component: {fileID: 646162496}
   - component: {fileID: 646162498}
   - component: {fileID: 646162497}
+  - component: {fileID: 646162499}
   m_Layer: 5
   m_Name: SlotUpgrade (8)
   m_TagString: Untagged
@@ -9947,10 +10007,10 @@ RectTransform:
   - {fileID: 7776374}
   m_Father: {fileID: 1153161465}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1123.7749, y: -487.05}
-  m_SizeDelta: {x: 556.47, y: 224.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &646162497
 MonoBehaviour:
@@ -9990,6 +10050,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 646162495}
   m_CullTransparentMesh: 1
+--- !u!114 &646162499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 646162495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e05e8d6faf05afc4a933f39732441d69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CatUpgradeSlot
+  catID: Cat_01
+  upgradeButton: {fileID: 0}
+  progressBarImage: {fileID: 0}
+  progressSprites: []
 --- !u!1 &649483734
 GameObject:
   m_ObjectHideFlags: 0
@@ -10292,6 +10368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d49df4230dbfad74bbd0e0de5b5913e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelSelectManage
+  gameSceneIndex: 2
 --- !u!1 &688074070
 GameObject:
   m_ObjectHideFlags: 0
@@ -10463,8 +10540,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -178.44067, y: 33.780533}
-  m_SizeDelta: {x: 175.2781, y: 173.6}
+  m_AnchoredPosition: {x: -168, y: 42}
+  m_SizeDelta: {x: 278.5818, y: 250.2513}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &692853707
 MonoBehaviour:
@@ -10486,7 +10563,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 5909766479160553677, guid: bcc1742cd59387545874caf2f5cadfe4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cf0145e5daa2b0240a959ec775a9753a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10752,8 +10829,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -178.44067, y: 33.780533}
-  m_SizeDelta: {x: 175.2781, y: 173.6}
+  m_AnchoredPosition: {x: -149, y: 76}
+  m_SizeDelta: {x: 330.8886, y: 299.1328}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &727338599
 MonoBehaviour:
@@ -10775,7 +10852,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 5909766479160553677, guid: bcc1742cd59387545874caf2f5cadfe4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 623b68de700f2ef4cbd97f1d3e82c12b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -11862,8 +11939,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -178.44067, y: 33.780533}
-  m_SizeDelta: {x: 175.2781, y: 173.6}
+  m_AnchoredPosition: {x: -166, y: 40}
+  m_SizeDelta: {x: 295.8043, y: 265.7206}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &776228329
 MonoBehaviour:
@@ -11885,7 +11962,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 5909766479160553677, guid: bcc1742cd59387545874caf2f5cadfe4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 430d731bed12d0442879acf0828fa620, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -12364,7 +12441,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: LEVEL  1
+  m_text: LEVEL  5
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b36cef65df1ccaa42bd968cd9bfa4a0f, type: 2}
   m_sharedMaterial: {fileID: 4866474410988894020, guid: b36cef65df1ccaa42bd968cd9bfa4a0f, type: 2}
@@ -12714,7 +12791,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &809375275
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13557,7 +13634,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: LEVEL  1
+  m_text: LEVEL  8
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b36cef65df1ccaa42bd968cd9bfa4a0f, type: 2}
   m_sharedMaterial: {fileID: 4866474410988894020, guid: b36cef65df1ccaa42bd968cd9bfa4a0f, type: 2}
@@ -14527,6 +14604,7 @@ GameObject:
   - component: {fileID: 931061152}
   - component: {fileID: 931061154}
   - component: {fileID: 931061153}
+  - component: {fileID: 931061155}
   m_Layer: 5
   m_Name: SlotUpgrade (12)
   m_TagString: Untagged
@@ -14552,10 +14630,10 @@ RectTransform:
   - {fileID: 462807654}
   m_Father: {fileID: 1153161465}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 206.23499, y: -853.85}
-  m_SizeDelta: {x: 556.47, y: 224.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &931061153
 MonoBehaviour:
@@ -14595,6 +14673,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 931061151}
   m_CullTransparentMesh: 1
+--- !u!114 &931061155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931061151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e05e8d6faf05afc4a933f39732441d69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CatUpgradeSlot
+  catID: Cat_01
+  upgradeButton: {fileID: 0}
+  progressBarImage: {fileID: 0}
+  progressSprites: []
 --- !u!1 &963111215
 GameObject:
   m_ObjectHideFlags: 0
@@ -15136,6 +15230,7 @@ GameObject:
   - component: {fileID: 1049448791}
   - component: {fileID: 1049448793}
   - component: {fileID: 1049448792}
+  - component: {fileID: 1049448794}
   m_Layer: 5
   m_Name: SlotUpgrade (14)
   m_TagString: Untagged
@@ -15161,10 +15256,10 @@ RectTransform:
   - {fileID: 306268046}
   m_Father: {fileID: 1153161465}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1123.7749, y: -853.85}
-  m_SizeDelta: {x: 556.47, y: 224.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1049448792
 MonoBehaviour:
@@ -15204,6 +15299,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1049448790}
   m_CullTransparentMesh: 1
+--- !u!114 &1049448794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1049448790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e05e8d6faf05afc4a933f39732441d69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CatUpgradeSlot
+  catID: Cat_01
+  upgradeButton: {fileID: 0}
+  progressBarImage: {fileID: 0}
+  progressSprites: []
 --- !u!1 &1060620781
 GameObject:
   m_ObjectHideFlags: 0
@@ -15342,7 +15453,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1065854979
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15643,6 +15754,7 @@ GameObject:
   - component: {fileID: 1103511470}
   - component: {fileID: 1103511472}
   - component: {fileID: 1103511471}
+  - component: {fileID: 1103511473}
   m_Layer: 5
   m_Name: SlotUpgrade (1)
   m_TagString: Untagged
@@ -15668,10 +15780,10 @@ RectTransform:
   - {fileID: 413000487}
   m_Father: {fileID: 1153161465}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 665.00494, y: -120.25}
-  m_SizeDelta: {x: 556.47, y: 224.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1103511471
 MonoBehaviour:
@@ -15711,6 +15823,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1103511469}
   m_CullTransparentMesh: 1
+--- !u!114 &1103511473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1103511469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e05e8d6faf05afc4a933f39732441d69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CatUpgradeSlot
+  catID: Cat_01
+  upgradeButton: {fileID: 0}
+  progressBarImage: {fileID: 0}
+  progressSprites: []
 --- !u!1 &1104780690
 GameObject:
   m_ObjectHideFlags: 0
@@ -15722,6 +15850,7 @@ GameObject:
   - component: {fileID: 1104780691}
   - component: {fileID: 1104780693}
   - component: {fileID: 1104780692}
+  - component: {fileID: 1104780694}
   m_Layer: 5
   m_Name: SlotUpgrade (5)
   m_TagString: Untagged
@@ -15747,10 +15876,10 @@ RectTransform:
   - {fileID: 558180731}
   m_Father: {fileID: 1153161465}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1123.7749, y: -303.65}
-  m_SizeDelta: {x: 556.47, y: 224.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1104780692
 MonoBehaviour:
@@ -15790,6 +15919,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1104780690}
   m_CullTransparentMesh: 1
+--- !u!114 &1104780694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1104780690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e05e8d6faf05afc4a933f39732441d69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CatUpgradeSlot
+  catID: Cat_01
+  upgradeButton: {fileID: 0}
+  progressBarImage: {fileID: 0}
+  progressSprites: []
 --- !u!1 &1105447219
 GameObject:
   m_ObjectHideFlags: 0
@@ -15801,6 +15946,7 @@ GameObject:
   - component: {fileID: 1105447220}
   - component: {fileID: 1105447222}
   - component: {fileID: 1105447221}
+  - component: {fileID: 1105447223}
   m_Layer: 5
   m_Name: SlotUpgrade (11)
   m_TagString: Untagged
@@ -15826,10 +15972,10 @@ RectTransform:
   - {fileID: 337074614}
   m_Father: {fileID: 1153161465}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1123.7749, y: -670.45}
-  m_SizeDelta: {x: 556.47, y: 224.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1105447221
 MonoBehaviour:
@@ -15869,6 +16015,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1105447219}
   m_CullTransparentMesh: 1
+--- !u!114 &1105447223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1105447219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e05e8d6faf05afc4a933f39732441d69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CatUpgradeSlot
+  catID: Cat_01
+  upgradeButton: {fileID: 0}
+  progressBarImage: {fileID: 0}
+  progressSprites: []
 --- !u!1 &1111870669
 GameObject:
   m_ObjectHideFlags: 0
@@ -16154,6 +16316,7 @@ GameObject:
   - component: {fileID: 1121043044}
   - component: {fileID: 1121043046}
   - component: {fileID: 1121043045}
+  - component: {fileID: 1121043047}
   m_Layer: 5
   m_Name: SlotUpgrade (3)
   m_TagString: Untagged
@@ -16179,10 +16342,10 @@ RectTransform:
   - {fileID: 1833801889}
   m_Father: {fileID: 1153161465}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 206.23499, y: -303.65}
-  m_SizeDelta: {x: 556.47, y: 224.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1121043045
 MonoBehaviour:
@@ -16222,6 +16385,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1121043043}
   m_CullTransparentMesh: 1
+--- !u!114 &1121043047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1121043043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e05e8d6faf05afc4a933f39732441d69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CatUpgradeSlot
+  catID: Cat_01
+  upgradeButton: {fileID: 0}
+  progressBarImage: {fileID: 0}
+  progressSprites: []
 --- !u!1 &1129892400
 GameObject:
   m_ObjectHideFlags: 0
@@ -16526,8 +16705,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -178.44067, y: 33.780533}
-  m_SizeDelta: {x: 175.2781, y: 173.6}
+  m_AnchoredPosition: {x: -144, y: 52.771}
+  m_SizeDelta: {x: 324.6988, y: 245.98}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1158778980
 MonoBehaviour:
@@ -16549,7 +16728,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 5909766479160553677, guid: bcc1742cd59387545874caf2f5cadfe4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3ed608dcea812d6449f2eef4681643c1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -17450,6 +17629,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Loading
       objectReference: {fileID: 0}
+    - target: {fileID: 1762104160067728035, guid: 5d830927decb9144795465daa56ccf91, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5271085953435962247, guid: 5d830927decb9144795465daa56ccf91, type: 3}
       propertyPath: m_LocalPosition.x
       value: -55
@@ -17504,7 +17687,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7513177696355356281, guid: 5d830927decb9144795465daa56ccf91, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -19278,8 +19461,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -178.44067, y: 33.780533}
-  m_SizeDelta: {x: 175.2781, y: 173.6}
+  m_AnchoredPosition: {x: -168, y: 52.771}
+  m_SizeDelta: {x: 309.36, y: 277.9003}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1351727061
 MonoBehaviour:
@@ -19301,7 +19484,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 5909766479160553677, guid: bcc1742cd59387545874caf2f5cadfe4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 070eb79b44301974ea350e29d82e2792, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -19557,6 +19740,7 @@ GameObject:
   - component: {fileID: 1377312385}
   - component: {fileID: 1377312387}
   - component: {fileID: 1377312386}
+  - component: {fileID: 1377312388}
   m_Layer: 5
   m_Name: SlotUpgrade (2)
   m_TagString: Untagged
@@ -19582,10 +19766,10 @@ RectTransform:
   - {fileID: 1709916263}
   m_Father: {fileID: 1153161465}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1123.7749, y: -120.25}
-  m_SizeDelta: {x: 556.47, y: 224.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1377312386
 MonoBehaviour:
@@ -19625,6 +19809,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1377312384}
   m_CullTransparentMesh: 1
+--- !u!114 &1377312388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1377312384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e05e8d6faf05afc4a933f39732441d69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CatUpgradeSlot
+  catID: Cat_01
+  upgradeButton: {fileID: 0}
+  progressBarImage: {fileID: 0}
+  progressSprites: []
 --- !u!1 &1381567011
 GameObject:
   m_ObjectHideFlags: 0
@@ -20793,6 +20993,7 @@ GameObject:
   - component: {fileID: 1482579610}
   - component: {fileID: 1482579612}
   - component: {fileID: 1482579611}
+  - component: {fileID: 1482579613}
   m_Layer: 5
   m_Name: SlotUpgrade (10)
   m_TagString: Untagged
@@ -20818,10 +21019,10 @@ RectTransform:
   - {fileID: 574319064}
   m_Father: {fileID: 1153161465}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 665.00494, y: -670.45}
-  m_SizeDelta: {x: 556.47, y: 224.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1482579611
 MonoBehaviour:
@@ -20861,6 +21062,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1482579609}
   m_CullTransparentMesh: 1
+--- !u!114 &1482579613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1482579609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e05e8d6faf05afc4a933f39732441d69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CatUpgradeSlot
+  catID: Cat_01
+  upgradeButton: {fileID: 0}
+  progressBarImage: {fileID: 0}
+  progressSprites: []
 --- !u!1 &1487169364
 GameObject:
   m_ObjectHideFlags: 0
@@ -22318,7 +22535,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: LEVEL  1
+  m_text: LEVEL  3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b36cef65df1ccaa42bd968cd9bfa4a0f, type: 2}
   m_sharedMaterial: {fileID: 4866474410988894020, guid: b36cef65df1ccaa42bd968cd9bfa4a0f, type: 2}
@@ -22508,8 +22725,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -178.44067, y: 33.780533}
-  m_SizeDelta: {x: 175.2781, y: 173.6}
+  m_AnchoredPosition: {x: -149, y: 72}
+  m_SizeDelta: {x: 314.59, y: 284.3986}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1739980313
 MonoBehaviour:
@@ -22531,7 +22748,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 5909766479160553677, guid: bcc1742cd59387545874caf2f5cadfe4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f5f35dd426cb9cd48aff22aaf5762a5a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -23868,7 +24085,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: LEVEL  1
+  m_text: LEVEL  4
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b36cef65df1ccaa42bd968cd9bfa4a0f, type: 2}
   m_sharedMaterial: {fileID: 4866474410988894020, guid: b36cef65df1ccaa42bd968cd9bfa4a0f, type: 2}
@@ -24154,6 +24371,7 @@ GameObject:
   - component: {fileID: 1852149066}
   - component: {fileID: 1852149068}
   - component: {fileID: 1852149067}
+  - component: {fileID: 1852149069}
   m_Layer: 5
   m_Name: SlotUpgrade (7)
   m_TagString: Untagged
@@ -24179,10 +24397,10 @@ RectTransform:
   - {fileID: 859075887}
   m_Father: {fileID: 1153161465}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 665.00494, y: -487.05}
-  m_SizeDelta: {x: 556.47, y: 224.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1852149067
 MonoBehaviour:
@@ -24222,6 +24440,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1852149065}
   m_CullTransparentMesh: 1
+--- !u!114 &1852149069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1852149065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e05e8d6faf05afc4a933f39732441d69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CatUpgradeSlot
+  catID: Cat_01
+  upgradeButton: {fileID: 0}
+  progressBarImage: {fileID: 0}
+  progressSprites: []
 --- !u!1 &1859955124
 GameObject:
   m_ObjectHideFlags: 0
@@ -24919,7 +25153,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: LEVEL  1
+  m_text: LEVEL  14
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b36cef65df1ccaa42bd968cd9bfa4a0f, type: 2}
   m_sharedMaterial: {fileID: 4866474410988894020, guid: b36cef65df1ccaa42bd968cd9bfa4a0f, type: 2}
@@ -25010,6 +25244,7 @@ GameObject:
   - component: {fileID: 1896430850}
   - component: {fileID: 1896430852}
   - component: {fileID: 1896430851}
+  - component: {fileID: 1896430853}
   m_Layer: 5
   m_Name: SlotUpgrade (9)
   m_TagString: Untagged
@@ -25035,10 +25270,10 @@ RectTransform:
   - {fileID: 387277492}
   m_Father: {fileID: 1153161465}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 206.23499, y: -670.45}
-  m_SizeDelta: {x: 556.47, y: 224.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1896430851
 MonoBehaviour:
@@ -25078,6 +25313,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1896430849}
   m_CullTransparentMesh: 1
+--- !u!114 &1896430853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1896430849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e05e8d6faf05afc4a933f39732441d69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CatUpgradeSlot
+  catID: Cat_01
+  upgradeButton: {fileID: 0}
+  progressBarImage: {fileID: 0}
+  progressSprites: []
 --- !u!1 &1911301253
 GameObject:
   m_ObjectHideFlags: 0
@@ -25111,8 +25362,8 @@ RectTransform:
   - {fileID: 1246571287}
   m_Father: {fileID: 259063018}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.29168552}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 204.9362}
   m_SizeDelta: {x: 28, y: -388.4698}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -25263,8 +25514,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -178.44067, y: 33.780533}
-  m_SizeDelta: {x: 175.2781, y: 173.6}
+  m_AnchoredPosition: {x: -177, y: 52.771}
+  m_SizeDelta: {x: 264, y: 264}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1923620903
 MonoBehaviour:
@@ -25286,7 +25537,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 5909766479160553677, guid: bcc1742cd59387545874caf2f5cadfe4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b220be5ba8231d34fb3756a8888aa56b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -25338,8 +25589,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -178.44067, y: 33.780533}
-  m_SizeDelta: {x: 175.2781, y: 173.6}
+  m_AnchoredPosition: {x: -145, y: 52.771}
+  m_SizeDelta: {x: 340.2482, y: 257.7638}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1926280896
 MonoBehaviour:
@@ -25361,7 +25612,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 5909766479160553677, guid: bcc1742cd59387545874caf2f5cadfe4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e75c00856cbc2bd48a466a3f47b9fe52, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -25865,6 +26116,7 @@ GameObject:
   - component: {fileID: 1992711140}
   - component: {fileID: 1992711142}
   - component: {fileID: 1992711141}
+  - component: {fileID: 1992711143}
   m_Layer: 5
   m_Name: SlotUpgrade (6)
   m_TagString: Untagged
@@ -25890,10 +26142,10 @@ RectTransform:
   - {fileID: 92828331}
   m_Father: {fileID: 1153161465}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 206.23499, y: -487.05}
-  m_SizeDelta: {x: 556.47, y: 224.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1992711141
 MonoBehaviour:
@@ -25933,6 +26185,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1992711139}
   m_CullTransparentMesh: 1
+--- !u!114 &1992711143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1992711139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e05e8d6faf05afc4a933f39732441d69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CatUpgradeSlot
+  catID: Cat_01
+  upgradeButton: {fileID: 0}
+  progressBarImage: {fileID: 0}
+  progressSprites: []
 --- !u!1 &2007064898
 GameObject:
   m_ObjectHideFlags: 0
@@ -25968,9 +26236,9 @@ RectTransform:
   m_Father: {fileID: 1867422271}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -19, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2007064900
 MonoBehaviour:
@@ -26721,7 +26989,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: Game
           m_BoolArgument: 0
@@ -27314,8 +27582,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -178.44067, y: 33.780533}
-  m_SizeDelta: {x: 175.2781, y: 173.6}
+  m_AnchoredPosition: {x: -165, y: 41}
+  m_SizeDelta: {x: 303.4811, y: 272.62}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2116487685
 MonoBehaviour:
@@ -27337,7 +27605,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 5909766479160553677, guid: bcc1742cd59387545874caf2f5cadfe4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5974f4f8383860740ba28241b9e081ab, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

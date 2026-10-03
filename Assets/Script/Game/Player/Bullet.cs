@@ -4,11 +4,7 @@ public class Bullet : MonoBehaviour
 {
     public float speed = 8f;
     public int damage = 25;
-
-    [Header("Hướng bay của đạn")]
-    public Vector3 moveDirection = Vector3.right; // Mặc định bay sang phải
-
-    [Header("Giới hạn tầm bắn")]
+    public Vector3 moveDirection = Vector3.right;
     public float maxTravelDistance = 15f;
     private Vector3 startPosition;
 
@@ -19,9 +15,7 @@ public class Bullet : MonoBehaviour
 
     void Update()
     {
-        // Đạn di chuyển theo hướng moveDirection
         transform.Translate(moveDirection * speed * Time.deltaTime);
-
         if (Vector3.Distance(startPosition, transform.position) >= maxTravelDistance)
         {
             ReturnToPool();
@@ -30,6 +24,7 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // Chú ý: Script Enemy của m phải có hàm TakeDamage nhé
         Enemy enemy = collision.GetComponent<Enemy>();
         if (enemy != null)
         {
@@ -40,9 +35,9 @@ public class Bullet : MonoBehaviour
 
     void ReturnToPool()
     {
-        if (gameObject.activeInHierarchy)
+        if (gameObject.activeInHierarchy && MultiBulletPool.Instance != null)
         {
-            BulletPool.Instance.ReturnBullet(gameObject);
+            MultiBulletPool.Instance.ReturnBullet(gameObject);
         }
     }
 }
