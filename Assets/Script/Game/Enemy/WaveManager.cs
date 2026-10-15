@@ -46,7 +46,7 @@ public class WaveManager : MonoBehaviour
             WaveInfo currentWave = currentLevel.waves[i];
 
             if (waveText != null)
-                waveText.text = $"WAVE {i + 1} / {currentLevel.waves.Length}";
+                waveText.text = $" {i + 1} / {currentLevel.waves.Length}";
 
             // Cho người chơi 2 giây thở giữa các Wave
             yield return new WaitForSeconds(2f);
