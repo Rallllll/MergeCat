@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using TMPro; // Bắt buộc dùng TextMeshPro cho chữ sắc nét
+using TMPro;
 
 public class CurrencyManager : MonoBehaviour
 {
@@ -7,6 +7,9 @@ public class CurrencyManager : MonoBehaviour
 
     [Header("Giao diện UI")]
     public TextMeshProUGUI goldText;
+
+    [Header("Test Hack Tiền")]
+    public int testGoldAmount = 10000; // Nhập số tiền m muốn hack vào đây ngoài Inspector
 
     private int currentGold = 0;
 
@@ -18,25 +21,27 @@ public class CurrencyManager : MonoBehaviour
 
     void Start()
     {
-        // Tự động load tiền từ máy người chơi khi vừa vào Scene.
-        // Chữ "PlayerGold" là chìa khóa (key) để tìm file save, 0 là số tiền mặc định.
         currentGold = PlayerPrefs.GetInt("PlayerGold", 0);
         UpdateGoldUI();
     }
 
-    // Hàm gọi khi giết quái
+    void Update()
+    {
+        // Nhấn phím G để hack thêm tiền ngay trong lúc chơi
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            AddTestGold();
+        }
+    }
+
     public void AddGold(int amount)
     {
         currentGold += amount;
-
-        // Lưu thẳng xuống máy tính/điện thoại ngay lập tức
         PlayerPrefs.SetInt("PlayerGold", currentGold);
         PlayerPrefs.Save();
-
         UpdateGoldUI();
     }
 
-    // Hàm gọi khi mua đồ trong Shop
     public bool SpendGold(int amount)
     {
         if (currentGold >= amount)
@@ -45,9 +50,9 @@ public class CurrencyManager : MonoBehaviour
             PlayerPrefs.SetInt("PlayerGold", currentGold);
             PlayerPrefs.Save();
             UpdateGoldUI();
-            return true; // Báo hiệu trừ tiền thành công để nhả item
+            return true;
         }
-        return false; // Trả về false nếu nghèo không đủ tiền mua
+        return false;
     }
 
     private void UpdateGoldUI()
@@ -56,5 +61,13 @@ public class CurrencyManager : MonoBehaviour
         {
             goldText.text = currentGold.ToString();
         }
+    }
+
+    // Cái này tạo ra 1 nút bấm ẩn. M nhấp chuột phải vào tên script "Currency Manager" ngoài Inspector sẽ thấy chữ "Bơm Tiền Test"
+    [ContextMenu("Bơm Tiền Test")]
+    public void AddTestGold()
+    {
+        AddGold(testGoldAmount);
+        Debug.Log($"[Test] Đã hack thêm {testGoldAmount} vàng! Tổng tiền hiện tại: {currentGold}");
     }
 }

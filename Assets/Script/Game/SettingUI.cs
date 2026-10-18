@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement; // Bắt buộc thêm dòng này để quản lý Scene (chuyển map, load map)
 
 public class SettingUI : MonoBehaviour
 {
@@ -33,5 +34,15 @@ public class SettingUI : MonoBehaviour
         {
             settingPanel.SetActive(!settingPanel.activeSelf);
         }
+    }
+
+    // --- HÀM MỚI CHO NÚT RESTART ---
+    public void RestartGame()
+    {
+        // 1. Nhả thời gian ra (Phòng trường hợp m đang Pause game bằng Time.timeScale = 0 lúc mở Setting)
+        Time.timeScale = 1f;
+
+        // 2. Load lại chính cái màn chơi hiện tại
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

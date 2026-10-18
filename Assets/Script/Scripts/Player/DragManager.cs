@@ -102,6 +102,17 @@ public class DragManager : MonoBehaviour
             RaycastHit2D hitTrash = Physics2D.Raycast(mousePos, Vector2.zero, Mathf.Infinity, LayerMask.GetMask("Trash"));
             if (hitTrash.collider != null)
             {
+                // 1. Tính tiền bán (25 vàng nhân với Level của con mèo)
+                int sellPrice = 25 * selectedTurret.turretLevel;
+
+                // 2. Cộng tiền vào ví
+                if (CurrencyManager.Instance != null)
+                {
+                    CurrencyManager.Instance.AddGold(sellPrice);
+                    Debug.Log($"Đã bán mèo Level {selectedTurret.turretLevel} lấy {sellPrice} vàng!");
+                }
+
+                // 3. Xoá mèo và dọn dẹp Slot
                 originalSlot.currentTurret = null;
                 Destroy(selectedTurret.gameObject);
                 selectedTurret = null;
