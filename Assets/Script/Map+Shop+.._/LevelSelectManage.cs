@@ -1,31 +1,90 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+
+[System.Serializable]
+public class LevelButtonData
+{
+    public int levelID;
+    public Button buttonComponent;
+
+    [Header("Nơi hiển thị ảnh trên UI")]
+    public Image targetImage; // Khung Image của nút
+
+    [Header("Object Text con (Hiển thị số Level)")]
+    public GameObject levelTextObj; // Kéo object Text con vào đây
+
+    [Header("Kéo file ảnh (Sprite) vào đây")]
+    public Sprite lockedVisual;
+    public Sprite unlockedVisual;
+    public Sprite finishedVisual;
+}
 
 public class LevelSelectManage : MonoBehaviour
 {
-    // Biến toàn cục để WaveManager ở Scene Game đọc xem người chơi vừa chọn Level mấy
     public static int selectedLevelID = 1;
 
     [Header("Cài đặt Chuyển Cảnh")]
-    [Tooltip("Điền ID của Scene Game trong Build Settings (Ví dụ: 2)")]
     public int gameSceneIndex = 2;
 
-    // Hàm này sẽ được gọi khi m bấm vào các nút chọn Level
-    // Tham số 'levelID' m điền ngoài Inspector tương ứng với từng nút (1, 2, 3...)
+    [Header("Quản lý Giao diện Nút Level")]
+    public LevelButtonData[] levelButtons;
+
+    void Start()
+    {
+        UpdateAllLevelButtons();
+    }
+
+    public void UpdateAllLevelButtons()
+    {
+        foreach (LevelButtonData btn in levelButtons)
+        {
+            int defaultState = (btn.levelID == 1) ? 1 : 0;
+            int state = PlayerPrefs.GetInt("LevelState_" + btn.levelID, defaultState);
+
+            if (btn.buttonComponent != null)
+            {
+                btn.buttonComponent.interactable = (state != 0);
+            }
+
+            if (btn.targetImage == null) continue;
+
+            // XỬ LÝ ĐỔI ẢNH VÀ BẬT/TẮT TEXT
+            if (state == 0) // KHOÁ
+            {
+                if (btn.lockedVisual != null) btn.targetImage.sprite = btn.lockedVisual;
+                if (btn.levelTextObj != null) btn.levelTextObj.SetActive(false); // Ẩn Text đi
+            }
+            else if (state == 1) // MỞ KHOÁ (CHƯA QUA)
+            {
+                if (btn.unlockedVisual != null) btn.targetImage.sprite = btn.unlockedVisual;
+                if (btn.levelTextObj != null) btn.levelTextObj.SetActive(true);  // Hiện Text lên
+            }
+            else if (state == 2) // ĐÃ FINISH
+            {
+                if (btn.finishedVisual != null) btn.targetImage.sprite = btn.finishedVisual;
+                if (btn.levelTextObj != null) btn.levelTextObj.SetActive(true);  // Hiện Text lên
+            }
+        }
+    }
+
     public void LoadLevel(int levelID)
     {
-        // 1. Lưu lại ID Level người chơi vừa chọn
         selectedLevelID = levelID;
 
-        // 2. Kiểm tra và chạy Loading sang Scene Game
         if (LoadingManager.Instance != null)
         {
             LoadingManager.Instance.LoadScene(gameSceneIndex);
         }
         else
         {
-            Debug.LogWarning("Không tìm thấy LoadingManager (Chắc do test thẳng từ Hub). Sẽ load thẳng vào Game!");
             SceneManager.LoadScene(gameSceneIndex);
         }
+    }
+
+    public void ResetData()
+    {
+        PlayerPrefs.DeleteAll();
+        UpdateAllLevelButtons();
     }
 }

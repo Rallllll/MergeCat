@@ -432,7 +432,7 @@ MonoBehaviour:
   - {fileID: 227463862523433330}
   turretLevel: 2
   currentSlot: {fileID: 0}
-  catID: Cat_01
+  catID: Cat_02
   upgradeFireRates:
   - 1
   - 1.4

@@ -10369,6 +10369,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelSelectManage
   gameSceneIndex: 2
+  levelButtons:
+  - levelID: 1
+    buttonComponent: {fileID: 2058088554}
+    targetImage: {fileID: 2058088555}
+    levelTextObj: {fileID: 553761005}
+    lockedVisual: {fileID: -1376533367222177635, guid: 27b72af7c386a6042a746ccee697f323, type: 3}
+    unlockedVisual: {fileID: 4647810368615637810, guid: 9f0b46bba654e7448aad1d5dbd423692, type: 3}
+    finishedVisual: {fileID: -6165572913557547408, guid: a077911ef7c32e44ba4ff12d5a439872, type: 3}
+  - levelID: 2
+    buttonComponent: {fileID: 1827972753}
+    targetImage: {fileID: 1827972754}
+    levelTextObj: {fileID: 267937558}
+    lockedVisual: {fileID: -1376533367222177635, guid: 27b72af7c386a6042a746ccee697f323, type: 3}
+    unlockedVisual: {fileID: 4647810368615637810, guid: 9f0b46bba654e7448aad1d5dbd423692, type: 3}
+    finishedVisual: {fileID: -6165572913557547408, guid: a077911ef7c32e44ba4ff12d5a439872, type: 3}
 --- !u!1 &688074070
 GameObject:
   m_ObjectHideFlags: 0
@@ -12791,7 +12806,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &809375275
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15835,10 +15850,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e05e8d6faf05afc4a933f39732441d69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CatUpgradeSlot
-  catID: Cat_01
-  upgradeButton: {fileID: 0}
-  progressBarImage: {fileID: 0}
-  progressSprites: []
+  catID: Cat_02
+  upgradeButton: {fileID: 917859984}
+  progressBarImage: {fileID: 902593518}
+  progressSprites:
+  - {fileID: 1794334700076439206, guid: f377158f5f6eb6547975006e017f6e41, type: 3}
+  - {fileID: -4568411145583958972, guid: 9263b14cab7a9c34cbeb85a8e46785d8, type: 3}
+  - {fileID: 674030166550027488, guid: 55ae902026af038478738ea1019b83a1, type: 3}
+  - {fileID: -8217670642582006296, guid: 26bce58dc730c7847b57b7b165213d35, type: 3}
+  - {fileID: -3106494477330011984, guid: d3dd35853c22b664ead46c7486b57e5c, type: 3}
+  - {fileID: 4414191992986437944, guid: 82ebac6a22d12a2498e76a04507152a9, type: 3}
 --- !u!1 &1104780690
 GameObject:
   m_ObjectHideFlags: 0
@@ -23834,7 +23855,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -23852,7 +23873,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1827972754}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 674991539}
+        m_TargetAssemblyTypeName: LevelSelectManage, Assembly-CSharp
+        m_MethodName: LoadLevel
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1827972754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23873,7 +23906,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1376533367222177635, guid: 27b72af7c386a6042a746ccee697f323, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -26963,7 +26996,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:

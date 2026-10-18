@@ -66,7 +66,10 @@ public class WaveManager : MonoBehaviour
         }
 
         // Qua hết Wave mà không chết -> Hiện bảng Win
-        if (winPanel != null) winPanel.SetActive(true);
+        if (UIManager.Instance != null)
+        {
+            UIManager.Instance.ShowWinPanel();
+        }
     }
 
     void SpawnSingleEnemy(WaveInfo waveData)

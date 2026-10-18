@@ -1951,7 +1951,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 11111
+  m_text: 10
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b36cef65df1ccaa42bd968cd9bfa4a0f, type: 2}
   m_sharedMaterial: {fileID: 4866474410988894020, guid: b36cef65df1ccaa42bd968cd9bfa4a0f, type: 2}
@@ -2936,7 +2936,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 595784597}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 899094757}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: Button_ChangeScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: MainHub
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &595784597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6511,8 +6523,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -76.27002, y: 2}
-  m_SizeDelta: {x: 103.0014, y: 102.0089}
+  m_AnchoredPosition: {x: -76, y: 31.8422}
+  m_SizeDelta: {x: 163.2665, y: 161.6934}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1165255153
 MonoBehaviour:
@@ -6534,7 +6546,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 5909766479160553677, guid: bcc1742cd59387545874caf2f5cadfe4, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7766,7 +7778,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1408310593}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1791731172}
+        m_TargetAssemblyTypeName: DragManager, Assembly-CSharp
+        m_MethodName: Button_BuyCat
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1408310593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9631,6 +9655,20 @@ MonoBehaviour:
   - {fileID: 1536584515}
   - {fileID: 1052932651}
   - {fileID: 959309931}
+  useAutoSpawn: 1
+  autoSpawnInterval: 10
+  currentCatPrice: 50
+  priceIncreasePerBuy: 10
+  buysToUpgrade: 5
+  catIconImage: {fileID: 1165255153}
+  nameText: {fileID: 1169971539}
+  priceText: {fileID: 1987476075}
+  shopCatIcons:
+  - {fileID: 21300000, guid: b220be5ba8231d34fb3756a8888aa56b, type: 3}
+  - {fileID: 21300000, guid: bc787eb7d877a4d4c9dfd7d3a9ac685f, type: 3}
+  shopCatNames:
+  - LEVEL 1
+  - LEVEL 2
 --- !u!1 &1800579491
 GameObject:
   m_ObjectHideFlags: 0
@@ -10994,7 +11032,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 11111
+  m_text: 10
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b36cef65df1ccaa42bd968cd9bfa4a0f, type: 2}
   m_sharedMaterial: {fileID: 4866474410988894020, guid: b36cef65df1ccaa42bd968cd9bfa4a0f, type: 2}

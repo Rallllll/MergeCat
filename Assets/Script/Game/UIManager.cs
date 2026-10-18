@@ -37,6 +37,22 @@ public class UIManager : MonoBehaviour
     {
         if (winPanel != null) winPanel.SetActive(true);
         Time.timeScale = 0f;
+
+        // --- CODE MỞ KHOÁ LEVEL KHI WIN ---
+
+        // 1. Đánh dấu Level hiện tại ĐÃ FINISH (State 2)
+        PlayerPrefs.SetInt("LevelState_" + LevelSelectManage.selectedLevelID, 2);
+
+        // 2. Mở khoá Level tiếp theo (Chuyển State lên 1)
+        int nextLevelID = LevelSelectManage.selectedLevelID + 1;
+        if (PlayerPrefs.GetInt("LevelState_" + nextLevelID, 0) == 0)
+        {
+            PlayerPrefs.SetInt("LevelState_" + nextLevelID, 1);
+        }
+
+        PlayerPrefs.Save(); // Lưu thẳng vào máy
+
+        Debug.Log("CHẠY HÀM LƯU THÀNH CÔNG! ĐÃ MỞ KHOÁ LEVEL: " + nextLevelID);
     }
 
     // --- CÁC HÀM NÀY ĐỂ GẮN VÀO NÚT BẤM (ON CLICK) ---
