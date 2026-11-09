@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System;
 
@@ -57,13 +57,19 @@ public class GemShopManage : MonoBehaviour
     // GẮN VÀO NÚT BẤM
     public void ClaimFreeGems()
     {
-        if (isCooldownActive) return;
+        if (isCooldownActive)
+        {
+            if (AudioManager.Instance != null) AudioManager.Instance.PlayError();
+            return;
+        }
 
         // Cộng tiền
         if (HubCurrencyManager.Instance != null)
         {
             HubCurrencyManager.Instance.AddGems(gemRewardAmount);
         }
+
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayGemClaim();
 
         // Kích hoạt Cooldown
         nextClaimTime = DateTime.Now.AddSeconds(cooldownSeconds);

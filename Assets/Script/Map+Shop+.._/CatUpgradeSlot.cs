@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class CatUpgradeSlot : MonoBehaviour
@@ -31,7 +31,13 @@ public class CatUpgradeSlot : MonoBehaviour
             PlayerPrefs.SetInt("UpgradeCount_" + catID, currentClicks);
             PlayerPrefs.Save();
 
+            if (AudioManager.Instance != null) AudioManager.Instance.PlayUpgrade();
+
             RefreshUI();
+        }
+        else
+        {
+            if (AudioManager.Instance != null) AudioManager.Instance.PlayError();
         }
     }
 
@@ -46,10 +52,10 @@ public class CatUpgradeSlot : MonoBehaviour
             progressBarImage.sprite = progressSprites[index];
         }
 
-        // Đầy 5 vạch thì khoá nút
-        if (currentClicks >= 5 && upgradeButton != null)
+        // TẮT NÚT NẾU ĐÃ NÂNG CẤP TỐI ĐA (Mốc 5)
+        if (upgradeButton != null)
         {
-            upgradeButton.interactable = false;
+            upgradeButton.interactable = (currentClicks < 5);
         }
     }
 }

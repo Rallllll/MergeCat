@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
@@ -124,6 +124,8 @@ public class Turret : MonoBehaviour
     {
         if (laneID == -1) return;
         if (firePoints == null || firePoints.Length == 0) return;
+
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayShoot();
 
         foreach (Transform fp in firePoints)
         {

@@ -1,37 +1,37 @@
 ﻿using UnityEngine;
-using UnityEngine.UI; // Thêm thư viện này để dùng Image
+using UnityEngine.UI; // ThÃªm thÆ° viá»‡n nÃ y Ä‘á»ƒ dÃ¹ng Image
 using TMPro;
 
 public class DragManager : MonoBehaviour
 {
     public static DragManager Instance;
 
-    [Header("Cài đặt Hệ thống")]
+    [Header("CÃ i Ä‘áº·t Há»‡ thá»‘ng")]
     public GameObject[] turretPrefabs;
     public Slot[] allSlots;
 
-    [Header("Tự động đẻ Mèo Level 1 (Theo thời gian)")]
+    [Header("Tá»± Ä‘á»™ng Ä‘áº» MÃ¨o Level 1 (Theo thá»i gian)")]
     public bool useAutoSpawn = true;
     public float autoSpawnInterval = 10f;
     private float spawnTimer;
 
-    [Header("Cài đặt Mua Mèo (Bằng Vàng)")]
+    [Header("CÃ i Ä‘áº·t Mua MÃ¨o (Báº±ng VÃ ng)")]
     public int currentCatPrice = 50;
     public int priceIncreasePerBuy = 10;
 
-    [Header("Nâng cấp Cửa Hàng (Đổi Level Mèo)")]
-    public int buysToUpgrade = 5;      // Mua bao nhiêu con thì Shop lên đời bán mèo xịn hơn?
-    private int totalCatsBought = 0;   // Đếm số mèo đã mua ở level hiện tại
-    private int currentShopLevel = 0;  // Shop đang bán mèo Level mấy? (0 = Mèo Lv1)
+    [Header("NÃ¢ng cáº¥p Cá»­a HÃ ng (Äá»•i Level MÃ¨o)")]
+    public int buysToUpgrade = 5;      // Mua bao nhiÃªu con thÃ¬ Shop lÃªn Ä‘á»i bÃ¡n mÃ¨o xá»‹n hÆ¡n?
+    private int totalCatsBought = 0;   // Äáº¿m sá»‘ mÃ¨o Ä‘Ã£ mua á»Ÿ level hiá»‡n táº¡i
+    private int currentShopLevel = 0;  // Shop Ä‘ang bÃ¡n mÃ¨o Level máº¥y? (0 = MÃ¨o Lv1)
 
-    [Header("Giao diện Nút Mua (UI)")]
-    public Image catIconImage;         // Cục Image chứa ảnh mèo trên nút
-    public TextMeshProUGUI nameText;   // Cục Text chứa tên mèo
-    public TextMeshProUGUI priceText;  // Cục Text chứa giá tiền
+    [Header("Giao diá»‡n NÃºt Mua (UI)")]
+    public Image catIconImage;         // Cá»¥c Image chá»©a áº£nh mÃ¨o trÃªn nÃºt
+    public TextMeshProUGUI nameText;   // Cá»¥c Text chá»©a tÃªn mÃ¨o
+    public TextMeshProUGUI priceText;  // Cá»¥c Text chá»©a giÃ¡ tiá»n
 
-    [Header("Dữ liệu kho Mèo (Khớp với Turret Prefabs)")]
-    public Sprite[] shopCatIcons;      // Cầm ảnh mèo Level 1, 2, 3... thả vào đây
-    public string[] shopCatNames;      // Viết tên mèo vào đây ("Mèo Béo", "Mèo Bắn Tỉa"...)
+    [Header("Dá»¯ liá»‡u kho MÃ¨o (Khá»›p vá»›i Turret Prefabs)")]
+    public Sprite[] shopCatIcons;      // Cáº§m áº£nh mÃ¨o Level 1, 2, 3... tháº£ vÃ o Ä‘Ã¢y
+    public string[] shopCatNames;      // Viáº¿t tÃªn mÃ¨o vÃ o Ä‘Ã¢y ("MÃ¨o BÃ©o", "MÃ¨o Báº¯n Tá»‰a"...)
 
     private Camera cam;
     private Turret selectedTurret;
@@ -47,15 +47,15 @@ public class DragManager : MonoBehaviour
     {
         cam = Camera.main;
         spawnTimer = autoSpawnInterval;
-        UpdateShopUI(); // Bật lên cái là cập nhật UI luôn
+        UpdateShopUI(); // Báº­t lÃªn cÃ¡i lÃ  cáº­p nháº­t UI luÃ´n
     }
 
     void Update()
     {
-        // --- NÚT TEST SPACE (Đẻ mèo Level 1) ---
+        // --- NÃšT TEST SPACE (Äáº» mÃ¨o Level 1) ---
         if (Input.GetKeyDown(KeyCode.Space)) SpawnTestTurret();
 
-        // --- ĐỒNG HỒ TỰ ĐỘNG ĐẺ (Đẻ mèo Level 1) ---
+        // --- Äá»’NG Há»’ Tá»° Äá»˜NG Äáºº (Äáº» mÃ¨o Level 1) ---
         if (useAutoSpawn)
         {
             spawnTimer -= Time.deltaTime;
@@ -66,7 +66,7 @@ public class DragManager : MonoBehaviour
             }
         }
 
-        // --- HỆ THỐNG KÉO THẢ (Giữ nguyên) ---
+        // --- Há»† THá»NG KÃ‰O THáº¢ (Giá»¯ nguyÃªn) ---
         if (Input.GetMouseButtonDown(0))
         {
             Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
@@ -102,17 +102,18 @@ public class DragManager : MonoBehaviour
             RaycastHit2D hitTrash = Physics2D.Raycast(mousePos, Vector2.zero, Mathf.Infinity, LayerMask.GetMask("Trash"));
             if (hitTrash.collider != null)
             {
-                // 1. Tính tiền bán (25 vàng nhân với Level của con mèo)
+                // 1. TÃ­nh tiá»n bÃ¡n (25 vÃ ng nhÃ¢n vá»›i Level cá»§a con mÃ¨o)
                 int sellPrice = 25 * selectedTurret.turretLevel;
 
-                // 2. Cộng tiền vào ví
+                // 2. Cá»™ng tiá»n vÃ o vÃ­
                 if (CurrencyManager.Instance != null)
                 {
                     CurrencyManager.Instance.AddGold(sellPrice);
-                    Debug.Log($"Đã bán mèo Level {selectedTurret.turretLevel} lấy {sellPrice} vàng!");
+                    Debug.Log($"ÄÃ£ bÃ¡n mÃ¨o Level {selectedTurret.turretLevel} láº¥y {sellPrice} vÃ ng!");
                 }
 
-                // 3. Xoá mèo và dọn dẹp Slot
+                // 3. XoÃ¡ mÃ¨o vÃ  dá»n dáº¹p Slot
+                if (AudioManager.Instance != null) AudioManager.Instance.PlayCoin();
                 originalSlot.currentTurret = null;
                 Destroy(selectedTurret.gameObject);
                 selectedTurret = null;
@@ -149,48 +150,51 @@ public class DragManager : MonoBehaviour
 
         if (!hasSpace)
         {
-            Debug.Log("Hết ô trống rồi, không thể mua thêm!");
+            Debug.Log("Háº¿t Ã´ trá»‘ng rá»“i, khÃ´ng thá»ƒ mua thÃªm!");
+            if (AudioManager.Instance != null) AudioManager.Instance.PlayError();
             return;
         }
 
         if (CurrencyManager.Instance != null && CurrencyManager.Instance.SpendGold(currentCatPrice))
         {
-            SpawnBoughtTurret(); // Gọi hàm đẻ con mèo theo Level của Shop
+            if (AudioManager.Instance != null) AudioManager.Instance.PlayCoin();
+            SpawnBoughtTurret(); // Gá»i hÃ m Ä‘áº» con mÃ¨o theo Level cá»§a Shop
 
-            totalCatsBought++; // Cộng 1 lần mua
+            totalCatsBought++; // Cá»™ng 1 láº§n mua
 
-            // Kiểm tra xem đã đủ số lần mua để nâng cấp Shop chưa?
-            // Điều kiện: Mua đủ số lượng VÀ kho mèo vẫn còn level cao hơn để lên
+            // Kiá»ƒm tra xem Ä‘Ã£ Ä‘á»§ sá»‘ láº§n mua Ä‘á»ƒ nÃ¢ng cáº¥p Shop chÆ°a?
+            // Äiá»u kiá»‡n: Mua Ä‘á»§ sá»‘ lÆ°á»£ng VÃ€ kho mÃ¨o váº«n cÃ²n level cao hÆ¡n Ä‘á»ƒ lÃªn
             if (totalCatsBought >= buysToUpgrade && currentShopLevel < turretPrefabs.Length - 1)
             {
-                currentShopLevel++;       // Lên đời!
-                totalCatsBought = 0;      // Đếm lại từ đầu cho đợt nâng cấp sau
-                currentCatPrice += 50;    // Khi lên đời shop, lạm phát giá tăng vọt thêm 50 vàng
-                Debug.Log("CỬA HÀNG ĐÃ NÂNG CẤP! BÁN MÈO LEVEL " + (currentShopLevel + 1));
+                currentShopLevel++;       // LÃªn Ä‘á»i!
+                totalCatsBought = 0;      // Äáº¿m láº¡i tá»« Ä‘áº§u cho Ä‘á»£t nÃ¢ng cáº¥p sau
+                currentCatPrice += 50;    // Khi lÃªn Ä‘á»i shop, láº¡m phÃ¡t giÃ¡ tÄƒng vá»t thÃªm 50 vÃ ng
+                Debug.Log("Cá»¬A HÃ€NG ÄÃƒ NÃ‚NG Cáº¤P! BÃN MÃˆO LEVEL " + (currentShopLevel + 1));
             }
             else
             {
-                currentCatPrice += priceIncreasePerBuy; // Nếu chưa lên đời thì giá tăng bình thường
+                currentCatPrice += priceIncreasePerBuy; // Náº¿u chÆ°a lÃªn Ä‘á»i thÃ¬ giÃ¡ tÄƒng bÃ¬nh thÆ°á»ng
             }
 
-            UpdateShopUI(); // Vẽ lại nút (Đổi ảnh, tên, giá)
+            UpdateShopUI(); // Váº½ láº¡i nÃºt (Äá»•i áº£nh, tÃªn, giÃ¡)
         }
         else
         {
-            Debug.Log("Nghèo! Cần " + currentCatPrice + " vàng!");
+            Debug.Log("NghÃ¨o! Cáº§n " + currentCatPrice + " vÃ ng!");
+            if (AudioManager.Instance != null) AudioManager.Instance.PlayError();
         }
     }
 
     private void UpdateShopUI()
     {
-        // Vẽ lại chữ Tiền
+        // Váº½ láº¡i chá»¯ Tiá»n
         if (priceText != null) priceText.text = currentCatPrice.ToString();
 
-        // Vẽ lại chữ Tên
+        // Váº½ láº¡i chá»¯ TÃªn
         if (nameText != null && shopCatNames.Length > currentShopLevel)
             nameText.text = shopCatNames[currentShopLevel];
 
-        // Vẽ lại cục Ảnh
+        // Váº½ láº¡i cá»¥c áº¢nh
         if (catIconImage != null && shopCatIcons.Length > currentShopLevel)
             catIconImage.sprite = shopCatIcons[currentShopLevel];
     }
@@ -223,8 +227,9 @@ public class DragManager : MonoBehaviour
 
             if (targetTurret.turretLevel == selectedTurret.turretLevel)
             {
+                if (AudioManager.Instance != null) AudioManager.Instance.PlayMerge();
                 originalSlot.currentTurret = null;
-                int nextLevel = targetTurret.turretLevel; // (tương đương với Level Index hiện tại + 1 vì bên trong m code sẵn turretLevel là 1, 2, 3 rồi)
+                int nextLevel = targetTurret.turretLevel; // (tÆ°Æ¡ng Ä‘Æ°Æ¡ng vá»›i Level Index hiá»‡n táº¡i + 1 vÃ¬ bÃªn trong m code sáºµn turretLevel lÃ  1, 2, 3 rá»“i)
 
                 Destroy(selectedTurret.gameObject);
                 Destroy(targetTurret.gameObject);
@@ -260,7 +265,7 @@ public class DragManager : MonoBehaviour
         selectedTurret.transform.position = GetTargetPosition(originalSlot);
     }
 
-    // ĐẺ MÈO KHI MUA BẰNG TIỀN (Sẽ lấy theo Current Shop Level)
+    // Äáºº MÃˆO KHI MUA Báº°NG TIá»€N (Sáº½ láº¥y theo Current Shop Level)
     public bool SpawnBoughtTurret()
     {
         foreach (Slot slot in allSlots)
@@ -275,13 +280,13 @@ public class DragManager : MonoBehaviour
                 slot.currentTurret = newTurret;
                 newTurret.laneID = slot.slotLaneID;
 
-                return true; // Báo cho GoldManager biết là đã đẻ thành công!
+                return true; // BÃ¡o cho GoldManager biáº¿t lÃ  Ä‘Ã£ Ä‘áº» thÃ nh cÃ´ng!
             }
         }
-        return false; // Báo là hết chỗ trống rồi
+        return false; // BÃ¡o lÃ  háº¿t chá»— trá»‘ng rá»“i
     }
 
-    // ĐẺ MÈO FREE DO HỆ THỐNG / SPACE (Luôn đẻ con level 1 - Index 0)
+    // Äáºº MÃˆO FREE DO Há»† THá»NG / SPACE (LuÃ´n Ä‘áº» con level 1 - Index 0)
     void SpawnTestTurret()
     {
         foreach (Slot slot in allSlots)

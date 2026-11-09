@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI; // Bắt buộc phải có để điều khiển Image của nút
 
 public class MenuManager : MonoBehaviour
@@ -14,6 +14,8 @@ public class MenuManager : MonoBehaviour
     // Hàm này sẽ nhận vào Số thứ tự (Index) của nút được bấm (0, 1, 2, 3...)
     public void OpenTab(int tabIndex)
     {
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayClick();
+
         for (int i = 0; i < allPanels.Length; i++)
         {
             if (i == tabIndex)

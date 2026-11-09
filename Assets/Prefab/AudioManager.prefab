@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &519420028
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 519420029}
+  - component: {fileID: 519420030}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &519420029
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84d8026256bf4289b0c7aeae3cf163d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioManager
+  bgmStart: {fileID: 8300000, guid: 038b646c5fa249f448e74e2dfec42fc6, type: 3}
+  bgmMainHub: {fileID: 8300000, guid: 7f7fc8a37dec14149a15f2e8afb7bba3, type: 3}
+  bgmGame: {fileID: 8300000, guid: 10a71ed22ae9de743bb32b5b65488a2e, type: 3}
+  sfxBaseHit: {fileID: 8300000, guid: 978469295c9893041bc35aeefdd8aa6c, type: 3}
+  sfxBoom: {fileID: 8300000, guid: 86111b1d4888dc247ac0b5b9c6981739, type: 3}
+  sfxClick: {fileID: 8300000, guid: 5f2b47519e9a7ba4a92155e102d5aa56, type: 3}
+  sfxCoin: {fileID: 8300000, guid: 63826ac90aa28d34c917442fac6b16a6, type: 3}
+  sfxErrorLocked: {fileID: 8300000, guid: 6919d603507fcdf4fb897683e5d4594c, type: 3}
+  sfxGemClaim: {fileID: 8300000, guid: 1c03e4a2f2cd4ed47ad1a3e59e8c9b57, type: 3}
+  sfxLose: {fileID: 8300000, guid: f5882e6024d09364b82106eccc4fa86c, type: 3}
+  sfxMerge: {fileID: 8300000, guid: 3167af8cf77947f45ad7a5b91f0fdfdb, type: 3}
+  sfxShoot: {fileID: 8300000, guid: c9031651d67c9014282eb7af6a0507de, type: 3}
+  sfxUpgrade: {fileID: 8300000, guid: 8a7e590a4f0cf0b43932f2b486b64add, type: 3}
+  sfxWin: {fileID: 8300000, guid: d02de3a112a3be94cb015d080ea6bc44, type: 3}
+  defaultMusicVolume: 0.6
+  defaultSoundVolume: 1

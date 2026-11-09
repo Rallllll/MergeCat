@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
@@ -71,6 +71,7 @@ public class LevelSelectManage : MonoBehaviour
     public void LoadLevel(int levelID)
     {
         selectedLevelID = levelID;
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayClick();
 
         if (LoadingManager.Instance != null)
         {
@@ -84,6 +85,7 @@ public class LevelSelectManage : MonoBehaviour
 
     public void ResetData()
     {
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayClick();
         PlayerPrefs.DeleteAll();
         UpdateAllLevelButtons();
     }

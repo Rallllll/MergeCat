@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class BaseHealth : MonoBehaviour
@@ -33,6 +33,8 @@ public class BaseHealth : MonoBehaviour
         currentHealth -= damageAmount;
         if (currentHealth < 0) currentHealth = 0;
 
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayBaseHit();
+
         if (healthSlider != null)
         {
             healthSlider.value = currentHealth;
@@ -52,6 +54,7 @@ public class BaseHealth : MonoBehaviour
         if (currentHealth >= maxHealth)
         {
             Debug.Log("Máu đã đầy, không cần mua thêm!");
+            if (AudioManager.Instance != null) AudioManager.Instance.PlayError();
             return;
         }
 
@@ -81,11 +84,13 @@ public class BaseHealth : MonoBehaviour
             }
 
             Debug.Log("Bơm máu thành công! Trừ " + healCost + " vàng.");
+            if (AudioManager.Instance != null) AudioManager.Instance.PlayCoin();
         }
         else
         {
             // --- GIAO DỊCH THẤT BẠI ---
             Debug.Log("Không đủ " + healCost + " vàng để mua máu!");
+            if (AudioManager.Instance != null) AudioManager.Instance.PlayError();
         }
     }
 

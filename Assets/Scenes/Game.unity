@@ -2066,6 +2066,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CurrencyManager
   goldText: {fileID: 1569533408}
+  testGoldAmount: 10000
 --- !u!4 &451507434
 Transform:
   m_ObjectHideFlags: 0
@@ -4184,7 +4185,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 874662134}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1800579493}
+        m_TargetAssemblyTypeName: SettingUI, Assembly-CSharp
+        m_MethodName: RestartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &874662134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8834,7 +8847,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 99999
+  m_text: 10000
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b36cef65df1ccaa42bd968cd9bfa4a0f, type: 2}
   m_sharedMaterial: {fileID: 4866474410988894020, guid: b36cef65df1ccaa42bd968cd9bfa4a0f, type: 2}
@@ -9714,6 +9727,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SettingUI
   settingPanel: {fileID: 2003387096}
+  musicButtonImage: {fileID: 0}
+  soundButtonImage: {fileID: 0}
+  musicOnSprite: {fileID: 0}
+  musicOffSprite: {fileID: 0}
+  soundOnSprite: {fileID: 0}
+  soundOffSprite: {fileID: 0}
 --- !u!1 &1814254725
 GameObject:
   m_ObjectHideFlags: 0

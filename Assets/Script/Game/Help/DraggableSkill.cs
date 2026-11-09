@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI; // Bắt buộc thêm dòng này để check trạng thái Button
 
@@ -100,6 +100,7 @@ public class DraggableSkill : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
                 if (extraButtonRef != null && extraButtonRef.TryUseItem())
                 {
                     // Kéo thả thành công -> Trừ tiền/số lượng thành công -> Sinh ra thật
+                    if (AudioManager.Instance != null) AudioManager.Instance.PlayClick();
                     Vector3 snappedPos = ghostItem.transform.position;
                     snappedPos.y = hit.transform.position.y + snapOffset.y;
                     ghostItem.transform.position = snappedPos;

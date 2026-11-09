@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class Bomb : MonoBehaviour
 {
@@ -18,6 +18,7 @@ public class Bomb : MonoBehaviour
     void Explode()
     {
         // 1. GỌI HIỆU ỨNG TỪ POOL
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayBoom();
         if (ExplosionPool.Instance != null)
         {
             ExplosionPool.Instance.GetExplosion(transform.position, Quaternion.identity);

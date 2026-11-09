@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.SceneManagement; // Bắt buộc phải có để chuyển Scene / Load lại game
 
 public class UIManager : MonoBehaviour
@@ -30,12 +30,14 @@ public class UIManager : MonoBehaviour
     public void ShowLosePanel()
     {
         if (losePanel != null) losePanel.SetActive(true);
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayLose();
         Time.timeScale = 0f; // Dừng mọi hoạt động của game (quái ngừng đi, lính ngừng đánh)
     }
 
     public void ShowWinPanel()
     {
         if (winPanel != null) winPanel.SetActive(true);
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayWin();
         Time.timeScale = 0f;
 
         // --- CODE MỞ KHOÁ LEVEL KHI WIN ---
@@ -60,6 +62,7 @@ public class UIManager : MonoBehaviour
     // Gắn vào nút "Chơi lại" (Retry)
     public void Button_Retry()
     {
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayClick();
         Time.timeScale = 1f; // Trả lại thời gian trước khi load scene
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // Load lại màn hiện tại
     }
@@ -67,6 +70,7 @@ public class UIManager : MonoBehaviour
     // Gắn vào nút "Về Shop" hoặc "Home"
     public void Button_ChangeScene(string sceneName)
     {
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayClick();
         Time.timeScale = 1f; // Nhớ phải có dòng này để nhả thời gian ra nếu đang ở màn hình Thua/Thắng
         SceneManager.LoadScene(sceneName);
     }

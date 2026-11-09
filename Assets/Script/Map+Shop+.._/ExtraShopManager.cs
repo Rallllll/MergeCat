@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
@@ -53,6 +53,7 @@ public class ExtraShopManager : MonoBehaviour
         // Nếu trong kho không có cái nào (chưa mua) thì cấm mang vào game
         if (item.currentQuantity <= 0)
         {
+            if (AudioManager.Instance != null) AudioManager.Instance.PlayError();
             Debug.Log("Bạn chưa mua " + item.itemID + ", không thể mang vào game!");
             return;
         }
@@ -62,6 +63,7 @@ public class ExtraShopManager : MonoBehaviour
             // Đang chọn -> Bấm phát nữa để BỎ CHỌN
             item.isEquipped = false;
             PlayerPrefs.SetInt("Equipped_" + item.itemID, 0);
+            if (AudioManager.Instance != null) AudioManager.Instance.PlayClick();
         }
         else
         {
@@ -74,6 +76,7 @@ public class ExtraShopManager : MonoBehaviour
 
             if (equipCount >= 3)
             {
+                if (AudioManager.Instance != null) AudioManager.Instance.PlayError();
                 Debug.Log("Chỉ được mang tối đa 3 món phụ trợ vào trận!");
                 return; // Chặn lại, không cho chọn thêm
             }
@@ -81,6 +84,7 @@ public class ExtraShopManager : MonoBehaviour
             // Hợp lệ -> ĐÁNH DẤU CHỌN
             item.isEquipped = true;
             PlayerPrefs.SetInt("Equipped_" + item.itemID, 1);
+            if (AudioManager.Instance != null) AudioManager.Instance.PlayClick();
         }
 
         PlayerPrefs.Save();
@@ -91,20 +95,29 @@ public class ExtraShopManager : MonoBehaviour
     {
         ExtraItem item = extraItems[index];
 
-        if (item.currentQuantity >= item.maxQuantity) return;
+        if (item.currentQuantity >= item.maxQuantity)
+        {
+            if (AudioManager.Instance != null) AudioManager.Instance.PlayError();
+            return;
+        }
 
-        if (HubCurrencyManager.Instance.SpendGems(item.price))
+        if (HubCurrencyManager.Instance != null && HubCurrencyManager.Instance.SpendGems(item.price))
         {
             item.currentQuantity++;
             PlayerPrefs.SetInt("Extra_" + item.itemID, item.currentQuantity);
             PlayerPrefs.Save();
+            if (AudioManager.Instance != null) AudioManager.Instance.PlayGemClaim();
             UpdateAllUI();
+        }
+        else
+        {
+            if (AudioManager.Instance != null) AudioManager.Instance.PlayError();
         }
     }
 
     public void UpdateAllUI()
     {
-        int currentGems = HubCurrencyManager.Instance.GetGems();
+        int currentGems = (HubCurrencyManager.Instance != null) ? HubCurrencyManager.Instance.GetGems() : 0;
 
         foreach (var item in extraItems)
         {

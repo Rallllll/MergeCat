@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Enemy : MonoBehaviour
@@ -199,6 +199,8 @@ public class Enemy : MonoBehaviour
         isDead = true;
 
         WaveManager.enemiesAlive--;
+
+        if (AudioManager.Instance != null) AudioManager.Instance.PlayBoom();
 
         anim.SetTrigger("Dead");
         GetComponent<Collider2D>().enabled = false;
